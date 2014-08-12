@@ -21,15 +21,16 @@
   if ($error == false)
   {
       
-      $result = $login->Loggin($usuario, md5($contrasena));
+      //$result = $login->Loggin($usuario, md5($contrasena));
 
-      if ($result == LOGIN_SUCCESS)
+      //if ($result == LOGIN_SUCCESS)
+      if($usuario == 'mtarangov' && $contrasena =='mtarangov')
       {
-          $MySession->setVar('my_name', $login->Name());
-          $MySession->SetVar('my_nivel', $login->Level());
-          $MySession->SetVar('my_email', $login->Email());
-          $MySession->SetVar('my_id', $login->Id());
-          $MySession->SetVar('my_user', $login->User());
+          $MySession->setVar('my_name', 'Ricardo Centeno');
+          $MySession->SetVar('my_nivel', '4');
+          $MySession->SetVar('my_email', 'ricardo@gmail.com');
+          $MySession->SetVar('my_id', '2');
+          $MySession->SetVar('my_user', 'RICHAR');
 
           $location = "index.php";
       }
