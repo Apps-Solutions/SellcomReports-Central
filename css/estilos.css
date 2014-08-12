@@ -1,0 +1,212 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-ago-2014, 9:55:31
+    Author     : marcos.martinez
+*/
+
+body {
+    background-color:#d5d5d5;
+    background-image: url('../gfx/main/fondo.png'); 
+}
+
+.height_main {
+    height: 50px;
+}
+
+.img_main {
+    margin-left: 100px;
+    margin-top: 5px;
+}
+
+
+.textbox {
+    height: 25px;
+
+    background-color:#fff;
+    width: 205px;
+    color: #555;
+    padding:2px;
+    border:1px solid #ddd;
+    border-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;  
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+
+
+
+
+.textbox-finanzas {
+    height: 30px;
+    background-color:#d5d5d5;
+    width: 185px;
+    color: #8a8989;
+    padding:2px;
+    border:1px solid #ddd;
+    -moz-border-radius-bottomleft: 10px;  
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+
+.margen_bottom_5 {
+    margin-bottom: 5px;
+}
+
+.margen_bottom_10 {
+    margin-bottom: 10px;
+}
+
+
+.margen_top_20 {
+    margin-top: 20px;
+}
+
+.css_login {
+    border-radius: 10px;
+    background-color:#d5d5d5;
+    margin-top: 70px;
+    height: 465px;
+}
+
+
+#frmLogin {
+    background-color:#d5d5d5;
+
+}
+
+
+input[type="submit"]{
+    color: #fff;
+    width: 205px;
+    height: 25px;
+    cursor:pointer;
+    border-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;  
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: #34b05f;
+}
+
+input {
+    text-align: center;
+}
+
+.bg_color_menu {
+    background-color: #34b05f;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #fff;
+    height: 50px;
+
+}
+
+.bg_color_menu_active {
+    background-color: #34b05f;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #fff;
+}
+
+
+
+.bg_color_menu_inactive {
+    margin-top: 13px;
+    background-color:#d5d5d5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #fff;
+    height: 40px;
+}
+
+.padding_menu_10 {
+    padding: 10px;
+}
+
+select {
+    width: 100%;
+}
+
+.select_filtro {
+    background-color: #83c299;
+    background-image: url("../gfx/img/icono_abajo.png");
+    background-position: 100.5% center;
+    background-repeat: no-repeat;
+    border: 0 none;
+    float: left;
+    font-size: 12px;
+    height: 25px;
+    overflow: auto;
+    padding-top: 4px;
+}
+
+
+.texto_titulo_main {
+    font-size: 17px;
+}
+
+.texto_titulo_seccion {
+    font-size: 23px;
+}
+
+.bgk_color_blanco {
+    height: 40px;
+    border-bottom: solid 2px #d5d5d5;
+}
+
+.bgk_menu_lista 
+{
+    padding: 30px;
+    font-weight: bold;
+    height: 50px;
+    background-color: #fff;
+    border-bottom: solid 2px #d5d5d5;
+}
+
+
+.bgk_blanco_kpi {
+    height: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: solid 2px #d5d5d5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.bgk_blanco_general {
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.texto_titulo_seccion_finanzas {
+    font-size: 14px;
+}
+
+
+.select_filtro_finanzas {
+    background-color: #d5d5d5;
+    background-image: url("../gfx/img/icono_abajo.png");
+    background-position: 80.5% center;
+    background-repeat: no-repeat;
+    border: 0 none;
+    float: left;
+    font-size: 12px;
+    height: 30px;
+    overflow: auto;
+    padding-top: 4px;
+}
+
+.texto_23 {
+    font-size: 23px;
+}
