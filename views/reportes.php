@@ -1,120 +1,104 @@
-<div class="col-lg-12 margen_top_20">
+<div class="row">
+    <div class="col-md-12">
 
-    <div class="row" style="margin-left: 2px;">
-        <div class="col-lg-2 bg_color_menu_active padding_menu_10 texto_titulo_seccion text-center" style="margin-right: 10px;">REPORTES</div>
-        <div class="col-lg-2 bg_color_menu_inactive padding_menu_10 texto_titulo_seccion text-center" style="margin-right: 10px;">GRAFICAS</div>
-        <div class="col-lg-2 bg_color_menu_inactive padding_menu_10 texto_titulo_seccion text-center" style="margin-right: 10px;">KPI'S</div>
-        <div class="col-lg-4"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <?php include "menu_reporte.php"; ?>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12 bgk_blanco_general" style="padding: 20px;">
+
+                <div class="row margen_bottom_20">
+                    <div class="col-md-12"></div>
+                </div>
+
+                <div class="row margen_bottom_20">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-4 texto_23">
+                        <div class="row">
+                            <div class="col-md-12 texto_21"><img src="gfx/img/icono_izquierda.png"> &nbsp; JULIO &nbsp;<img src="gfx/img/icono_derecha.png"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 texto_23">
+                        <div class="row"><div class="col-md-12 texto_21"><img src="gfx/img/icono_menos.png"> &nbsp; 2014 &nbsp;<img src="gfx/img/icono_mas.png"></div></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Fecha</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Forecast 50%</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Forecast 80%</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Forecast 100%</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;%</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;BackOrder</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Stock</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Stock/Proyectos</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Remisiones</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Remisiones Semanal</th>
+                            </thead>
+                            <tbody>
+                                <?php for ($i = 1; $i < 10; $i++): ?>
+                                      <tr>
+                                          <td>04/07/14</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                      </tr>
+                                  <?php endfor; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="border-bottom: solid 2px #d5d5d5; "></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Fecha</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Total Pendiente de Facturar</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Total Pendiente de Facturar 2</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Cuentas por Cobrar</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;%</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Facturacion YTD</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Facturacion Mes</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Cobranza Semanal</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Previsión Anual Minima</th>
+                            <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Prevision Anual Máxima</th>
+                            </thead>
+                            <tbody>
+                                <?php for ($i = 1; $i < 50; $i++): ?>
+                                      <tr>
+                                          <td>04/07/14</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                          <td>1,000.00</td>
+                                      </tr>
+                                  <?php endfor; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="col-lg-12 bgk_blanco_general" style="padding: 20px;">
-    <div class="row">
-        <div class="col-lg-5"></div>
-        <div class="col-lg-4 texto_23"><img src="gfx/img/icono_izquierda.png"> &nbsp; JULIO &nbsp;<img src="gfx/img/icono_derecha.png"></div>
-        <div class="col-lg-3 texto_23"><img src="gfx/img/icono_menos.png"> &nbsp; 2014 &nbsp;<img src="gfx/img/icono_mas.png"></div>
-    </div>
-    <div class="row" style="font-weight: bold; height: 55px; border-bottom: solid 3px #d5d5d5;">
-        <div class="col-lg-1">Fecha</div>
-        <div class="col-lg-1">Forecast 50%</div>
-        <div class="col-lg-1">Forecast 80%</div>
-        <div class="col-lg-1">Forecast 100%</div>
-        <div class="col-lg-1">%</div>
-        <div class="col-lg-1">BackOrder</div>
-        <div class="col-lg-1">Stock</div>
-        <div class="col-lg-1">Stock/Proyectos</div>
-        <div class="col-lg-1">Remisiones</div>
-        <div class="col-lg-1">Remisiones<br/>Semanal</div>
-    </div>
-
-    <div class="row" style="height: 35px;">
-        <div class="col-lg-1">04/07/14</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">948%</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-    </div>
-    <div class="row" style="height: 35px;">
-        <div class="col-lg-1">04/07/14</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">948%</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-    </div>
-    <div class="row" style="height: 35px;">
-        <div class="col-lg-1">04/07/14</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">948%</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-    </div>
-
-
-    <div class="row" style="font-weight: bold; height: 55px; border-bottom: solid 3px #d5d5d5;">
-        <div class="col-lg-1">Fecha</div>
-        <div class="col-lg-1">Total Pendiente de Facturar</div>
-        <div class="col-lg-1">Total Pendiente de Facturar 2</div>
-        <div class="col-lg-1">Cuentas por Cobrar</div>
-        <div class="col-lg-1">%</div>
-        <div class="col-lg-1">Facturacion YTD</div>
-        <div class="col-lg-1">Facturacion Mes</div>
-        <div class="col-lg-1">Cobranza Semanal</div>
-        <div class="col-lg-1">Previsión Anual Minima</div>
-        <div class="col-lg-1">Prevision Anual Máxima</div>
-    </div>
-
-
-    <div class="row" style="height: 35px;">
-        <div class="col-lg-1">04/07/14</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">948%</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-
-    </div>
-    <div class="row" style="height: 35px;">
-        <div class="col-lg-1">04/07/14</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">948%</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-
-    </div>
-    <div class="row" style="height: 35px;">
-        <div class="col-lg-1">04/07/14</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">948%</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-        <div class="col-lg-1">1,000.00</div>
-    </div>
-</div>

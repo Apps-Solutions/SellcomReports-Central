@@ -7,11 +7,24 @@ and open the template in the editor.
     Created on : 11-ago-2014, 9:55:31
     Author     : marcos.martinez
 */
-
 body {
-    background-color:#d5d5d5;
     background-image: url('../gfx/main/fondo.png'); 
+    background-size: 100%;
+    font-family: '../fonts/HelveticaNeue.dfont';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
 }
+
+a{ color: #000;}
+a:link {text-decoration: none;}
+a:hover {color: #34b05f;}
+
+.menu_reporte a {
+    color: #fff;
+}
+
+
 
 .height_main {
     height: 50px;
@@ -25,9 +38,8 @@ body {
 
 .textbox {
     height: 25px;
-
     background-color:#fff;
-    width: 205px;
+    width: 100%;
     color: #555;
     padding:2px;
     border:1px solid #ddd;
@@ -40,20 +52,16 @@ body {
     font-weight: 300;
 }
 
-
-
-
-
 .textbox-finanzas {
     height: 30px;
     background-color:#d5d5d5;
-    width: 185px;
+    width: 100%;
     color: #8a8989;
     padding:2px;
     border:1px solid #ddd;
-    -moz-border-radius-bottomleft: 10px;  
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+    /* -moz-border-radius-bottomleft: 10px;  
+     -moz-border-radius: 10px;
+     -webkit-border-radius: 10px;*/
     font-size: 14px;
     letter-spacing: 1px;
     font-weight: 300;
@@ -68,10 +76,19 @@ body {
     margin-bottom: 10px;
 }
 
+.margen_bottom_20 {
+    margin-bottom: 20px;
+}
+
 
 .margen_top_20 {
     margin-top: 20px;
 }
+
+.margen_top_10 {
+    margin-top: 10px;
+}
+
 
 .css_login {
     border-radius: 10px;
@@ -97,10 +114,21 @@ input[type="submit"]{
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     background-color: #34b05f;
+    width: 100%;
 }
 
 input {
     text-align: center;
+}
+
+
+.bg_color_menu_negocio {
+    background-color: #34b05f;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #fff;
+    height: auto;
+
 }
 
 .bg_color_menu {
@@ -108,15 +136,17 @@ input {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: #fff;
-    height: 50px;
-
 }
+
 
 .bg_color_menu_active {
     background-color: #34b05f;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: #fff;
+    height: 53px;
+    padding: 10px;
+    margin-top: 5px;
 }
 
 
@@ -127,7 +157,9 @@ input {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: #fff;
-    height: 40px;
+    height: 45px;
+        padding: 10px;
+
 }
 
 .padding_menu_10 {
@@ -136,34 +168,37 @@ input {
 
 select {
     width: 100%;
+    height: 30px;
+    font-size: 14px;
 }
 
 .select_filtro {
     background-color: #83c299;
-    background-image: url("../gfx/img/icono_abajo.png");
+    /*background-image: url("../gfx/img/icono_abajo.png");*/
     background-position: 100.5% center;
     background-repeat: no-repeat;
     border: 0 none;
     float: left;
-    font-size: 12px;
-    height: 25px;
     overflow: auto;
     padding-top: 4px;
 }
 
 
+.select_filtro_negocio {
+    background-color: #d5d5d5;
+    background-position: 100% center;
+    background-repeat: no-repeat;
+    border: 0 none;
+    float: left;
+    overflow: auto;
+    padding-top: 4px;
+}
+
 .texto_titulo_main {
     font-size: 17px;
 }
 
-.texto_titulo_seccion {
-    font-size: 23px;
-}
 
-.bgk_color_blanco {
-    height: 40px;
-    border-bottom: solid 2px #d5d5d5;
-}
 
 .bgk_menu_lista 
 {
@@ -175,14 +210,7 @@ select {
 }
 
 
-.bgk_blanco_kpi {
-    height: 50px;
-    padding: 20px;
-    background-color: #fff;
-    border-bottom: solid 2px #d5d5d5;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
+
 
 .bgk_blanco_general {
     border-radius: 10px;
@@ -196,17 +224,53 @@ select {
 
 .select_filtro_finanzas {
     background-color: #d5d5d5;
-    background-image: url("../gfx/img/icono_abajo.png");
-    background-position: 80.5% center;
+    //background-image: url("../gfx/img/icono_abajo.png");
+    background-position: 100% center;
     background-repeat: no-repeat;
     border: 0 none;
     float: left;
-    font-size: 12px;
-    height: 30px;
     overflow: auto;
     padding-top: 4px;
 }
 
-.texto_23 {
-    font-size: 23px;
+
+.texto_21 {
+    font-size: 21px;
+}
+
+.texto_24 {
+    font-size: 24px;
+}
+
+.texto_22 {
+    font-size: 22px;
+}
+
+button {
+    background-color: #34b05f;
+    border:solid 1px #34b05f;
+    color: #fff;
+    height: 35px;
+    width: 100px;
+}
+
+navbar {
+    height: 50px;
+}
+
+.padding_titulo_principal {
+    padding-top: 10px; 
+    padding-bottom: 10px;
+}
+
+.padding_titulo_menu {
+padding-top: 10px;
+padding-bottom: 20px;
+padding-left: 30px;
+}
+
+.tabla_grafica thead th {
+    background-color: #34b05f;
+    color: #fff;
+    font-size: 14px;
 }
