@@ -18,7 +18,7 @@ define("TESTER","test");
 $uiCommand=array();
 
 $uiCommand[HOME]	=	array(
-	array(NIVEL_EJECUTIVO), //Controla los permisos
+	array(NIVEL_ADMIN,NIVEL_FINANZAS,NIVEL_VENTAS), //Controla los permisos
 	"", //Titulo
 	DIRECTORY_VIEWS."base/home.php", //Archivo PHP
 	"", //array("ejemplo.js","ejemplo2.js")
@@ -37,17 +37,17 @@ $uiCommand[LOGIN]	=	array(
 
 
 $uiCommand[NEGOCIOS]	=	array(
-	array(NIVEL_EJECUTIVO), //Controla los permisos
+	array(NIVEL_ADMIN), //Controla los permisos
 	"", //Titulo
 	DIRECTORY_VIEWS."negocios.php", //Archivo PHP
 	"", //array("ejemplo.js","ejemplo2.js")
 	"", //array("css.css","css2.css")
-	"ajax.usuario.js" //Ajax File
+	"ajax.negocios.js" //Ajax File
 );
 
 
 $uiCommand[KPIS]	=	array(
-	array(NIVEL_EJECUTIVO), //Controla los permisos
+	array(NIVEL_ADMIN), //Controla los permisos
 	"", //Titulo
 	DIRECTORY_VIEWS."kpis.php", //Archivo PHP
 	"", //array("ejemplo.js","ejemplo2.js")
@@ -59,17 +59,17 @@ $uiCommand[KPIS]	=	array(
 /*******     Administrador   *********************/
 
 $uiCommand[FINANZAS]	=	array(
-	array(NIVEL_EJECUTIVO), //Controla los permisos
+	array(NIVEL_ADMIN,NIVEL_FINANZAS), //Controla los permisos
 	"", //Titulo
 	DIRECTORY_VIEWS."finanzas.php", //Archivo PHP
 	"", //array("ejemplo.js","ejemplo2.js")
 	"", //array("css.css","css2.css")
-	"" //Ajax File
+	"ajax.finanzas.js" //Ajax File
 );
 
 /*******     REportes   *********************/
 $uiCommand[REPORTES]	=	array(
-	array(NIVEL_EJECUTIVO), //Controla los permisos
+	array(NIVEL_ADMIN,NIVEL_FINANZAS), //Controla los permisos
 	"", //Titulo
 	DIRECTORY_VIEWS."reportes.php", //Archivo PHP
 	"", //array("ejemplo.js","ejemplo2.js")
@@ -78,7 +78,7 @@ $uiCommand[REPORTES]	=	array(
 );
 
 $uiCommand[REPORTES_GRAFICAS]	=	array(
-	array(NIVEL_EJECUTIVO), //Controla los permisos
+	array(NIVEL_ADMIN,NIVEL_FINANZAS), //Controla los permisos
 	"", //Titulo
 	DIRECTORY_VIEWS."graficas.php", //Archivo PHP
 	"", //array("ejemplo.js","ejemplo2.js")
@@ -87,7 +87,7 @@ $uiCommand[REPORTES_GRAFICAS]	=	array(
 );
 
 $uiCommand[REPORTES_KPIS]	=	array(
-	array(NIVEL_EJECUTIVO), //Controla los permisos
+	array(NIVEL_ADMIN,NIVEL_FINANZAS), //Controla los permisos
 	"", //Titulo
 	DIRECTORY_VIEWS."reporte_kpi.php", //Archivo PHP
 	"", //array("ejemplo.js","ejemplo2.js")

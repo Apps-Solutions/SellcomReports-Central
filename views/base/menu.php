@@ -8,7 +8,7 @@
                   <span class="icon-bar"></span>
               </button>
           <?php endif; ?>
-        <img src="gfx/img/sellcom.gif" width="80" height="80" title="SELLCOM" alt="SELLCOM" class="img_main"/>
+        <img src="gfx/img/sellcom80.png"  title="SELLCOM" alt="SELLCOM" class="img_main"/>
     </div>
 
     <?php if ($MySession->LoggedIn()): ?>
@@ -32,18 +32,18 @@
                       </li>
                       <li>
                           <a href="index.php?command=<?php echo REPORTES; ?>">
-                              <?php if ($MyIndex->MyCommand() == REPORTES): ?><img src="gfx/img/linea_en_barra.png">&nbsp;<?php endif; ?>REPORTES
+                              <?php if (in_array($MyIndex->MyCommand(),array(REPORTES,REPORTES_GRAFICAS,REPORTES_KPIS))): ?><img src="gfx/img/linea_en_barra.png">&nbsp;<?php endif; ?>REPORTES
                           </a>
                       </li>
                       <!--<li>
-                          <a href="index.php?command=<?php echo TESTER;?>">TEST</a>
+                          <a href="index.php?command=<?php echo TESTER; ?>">TEST</a>
                       </li>-->
                   </ul>
-                  <ul class="nav navbar-nav navbar-right">
-                      <li><a href="javascript: vaoid(0);"><?php echo $MySession->Name(); ?></a></li>
-                      <li><a href="logout.php"><img src="gfx/img/icono_salir.png" width="20" height="20" alt="cerrar session" title="salir" /></a>
-                      </li>
-                  </ul>
+                  <p class="navbar-text navbar-right"><b>Bienvenido:</b> <?php echo $MySession->Name(); ?>
+                      <a href="logout.php" class="navbar-link">
+                          <img src="gfx/img/icono_salir.png" width="18" height="18" alt="cerrar session" title="salir" />
+                      </a>
+                  </p>
               </div>
           </div>
       <?php endif; ?>

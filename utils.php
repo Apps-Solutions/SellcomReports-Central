@@ -101,33 +101,6 @@
        "december" => "diciembre"
   );
 
-  
-
-  function IP_REAL()
-  {
-
-      if (isset($_SERVER))
-      {
-          if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
-              $ip = Sanitizacion($_SERVER["HTTP_X_FORWARDED_FOR"]);
-          elseif (isset($_SERVER["HTTP_CLIENT_IP"]))
-              $ip = Sanitizacion($_SERVER["HTTP_CLIENT_IP"]);
-          else
-              $ip = Sanitizacion($_SERVER["REMOTE_ADDR"]);
-      }
-      else
-      {
-          if (getenv('HTTP_X_FORWARDED_FOR'))
-              $ip = Sanitizacion(getenv('HTTP_X_FORWARDED_FOR'));
-          elseif (getenv('HTTP_CLIENT_IP'))
-              $ip = Sanitizacion(getenv('HTTP_CLIENT_IP'));
-          else
-              $ip = Sanitizacion(getenv('REMOTE_ADDR'));
-      }
-
-      return $ip;
-  }
-
   function LimitePalabras($limit, $txt)
   {
 
@@ -144,7 +117,6 @@
       return $newtxt;
   }
 
-  
   function makeHTMLPaginar($numrows1, $maxPage, $terminamosconel, $paginanum, $seccion, $caption)
   {
 
@@ -397,7 +369,6 @@
 
   function getPathImg($file)
   {
-      // return "skin/".TEMA_WEB."/images/qt/".$file;
       return "gfx/" . $file;
   }
 
@@ -409,7 +380,6 @@
 
       return $token;
   }
-
 
   function url_valida($url)
   {
@@ -478,79 +448,6 @@
       return $msg;
   }
 
-
-
-  function edad($fecha_nac)
-  {
-      $dia = date("d");
-      $mes = date("m");
-      $anno = date("Y");
-
-      $dia_nac = substr($fecha_nac, 8, 2);
-      $mes_nac = substr($fecha_nac, 5, 2);
-      $anno_nac = substr($fecha_nac, 0, 4);
-
-      if ($mes_nac > $mes)
-      {
-          $calc_edad = $anno - $anno_nac - 1;
-      }
-      else
-      {
-          if ($mes == $mes_nac AND $dia_nac > $dia)
-          {
-              $calc_edad = $anno - $anno_nac - 1;
-          }
-          else
-          {
-              $calc_edad = $anno - $anno_nac;
-          }
-      }
-      return $calc_edad;
-  }
-
-  function valida_imagen($file, $width = 0, $height = 0, $tipos = false)
-  {
-      if (file_exists($file))
-      {
-          $img_info = getimagesize($file);
-          if ($img_info === FALSE)
-          {
-              return array(FALSE, "No se recibió un archivo de imágen.");
-          }
-          else
-          {
-
-              if (!$tipos)
-                  $tipos = array('image/jpeg', 'image/png');
-
-              $w = $img_info[0];
-              $h = $img_info[1];
-              $mime = $img_info['mime'];
-              if ($width > 0)
-              {
-                  if ($width != $w)
-                      return array(FALSE, "Largo de imágen inválido.");
-              } else if ($height > 0)
-              {
-                  if ($height != $h)
-                      return array(FALSE, "Altura de imágen inválido.");
-              } else if (!in_array($mime, $tipos))
-              {
-                  return array(FALSE, 'Tipo de imágen inválida. ');
-              }
-              else
-              {
-                  return array(TRUE, 'OK');
-              }
-          }
-      }
-      else
-      {
-          return array(FALSE, "No se encontró la imágen.");
-      }
-  }
-
-  
   function makeHTMLOrder($order, $ordercampo, $campo, $caption, $page, $width, $id = '')
   {
 
@@ -597,13 +494,89 @@
       print ("<td $id  $thisWidth  $thisClass>$caption &nbsp; " . $flecha . "</td>");
   }
 
-  function selectSucursales($id, $value = '', $title = '', $extra = '')
+  function selectTipoMoneda($id, $value = '', $title = '', $extra = '')
   {
       $consultas = new CONSULTAS();
-      $campos = array("id", "name");
-      $condiciones = array("status" => "1");
+      $campos = array("id", "name", "prefix");
+      $condiciones = array("1" => "1");
 
-      $result = $consultas->SeleccionarTablaFila("fs_branch", $campos, $condiciones, "", "id");
+      $result = $consultas->SeleccionarTablaFila("currency", $campos, $condiciones, "", "id");
+
+      if ($result == CONSULTAS_SUCCESS)
+      {
+          $html = "<select name='$id' id='$id' $extra>";
+
+          if (!empty($title)):
+              $html .= "<option value=''>$title</option>";
+          endif;
+
+          while ($row = $consultas->Fetch()):
+
+              $html .= "<option value='" . $row["id"] . "' ";
+
+
+              if ($row["id"] == $value):
+
+                  $html .= "selected='selected'";
+              endif;
+
+
+              $html .= ">" . utf8_encode($row["name"]) . " - " . $row["prefix"] . "</option>";
+
+          endwhile;
+
+          $html .= "</select>";
+      }
+
+      return $html;
+  }
+
+  function selectCliente($id, $value = '', $title = '', $extra = '')
+  {
+      $consultas = new CONSULTAS();
+
+      $campos = array("id", "company_name");
+      $condiciones = array("1" => "1");
+
+      $result = $consultas->SeleccionarTablaFila("customer", $campos, $condiciones, "", "id");
+
+      if ($result == CONSULTAS_SUCCESS)
+      {
+          $html = "<select name='$id' id='$id' $extra>";
+
+          if (!empty($title)):
+              $html .= "<option value=''>$title</option>";
+          endif;
+
+          while ($row = $consultas->Fetch()):
+
+              $html .= "<option value='" . $row["id"] . "' ";
+
+
+              if ($row["id"] == $value):
+
+                  $html .= "selected='selected'";
+              endif;
+
+
+              $html .= ">" . utf8_encode($row["company_name"]) . "</option>";
+
+          endwhile;
+
+          $html .= "</select>";
+      }
+
+      return $html;
+  }
+
+  function selectSector($id, $value = '', $title = '', $extra = '')
+  {
+      $consultas = new CONSULTAS();
+
+      $campos = array("id", "name", "prefix");
+      $condiciones = array("1" => "1");
+
+      $result = $consultas->SeleccionarTablaFila("sector", $campos, $condiciones, "", "id");
 
       if ($result == CONSULTAS_SUCCESS)
       {
@@ -634,19 +607,15 @@
       return $html;
   }
 
-  function selectGerentes($id, $value = '', $title = '', $extra = '')
+  function selectStatus($id, $value = '', $title = '', $extra = '')
   {
       $consultas = new CONSULTAS();
-      
-      
-      $campos = array("fs_people.name","fs_user.id");
-      
-      $condiciones = array("fs_user.status" => "1", "fs_user.profile_id" => NIVEL_GERENTE);
-                                     
-      $inner = array("fs_people:fs_user"=>"fs_people.id=fs_user.people_id");
-      
-      $result = $consultas->QueryINNERJOIN($inner, $campos, $condiciones, "", "fs_user.id");  
-    
+
+      $campos = array("id", "name", "prefix");
+      $condiciones = array("1" => "1");
+
+      $result = $consultas->SeleccionarTablaFila("deal_status", $campos, $condiciones, "", "id");
+
       if ($result == CONSULTAS_SUCCESS)
       {
           $html = "<select name='$id' id='$id' $extra>";
@@ -667,6 +636,46 @@
 
 
               $html .= ">" . utf8_encode($row["name"]) . "</option>";
+
+          endwhile;
+
+          $html .= "</select>";
+      }
+
+      return $html;
+  }
+
+  function selectEmpleado($id, $value = '', $title = '', $extra = '')
+  {
+      $consultas = new CONSULTAS();
+      $campos = array("em.id", "em.title", "CONCAT(pe.first_name,' ',pe.last_name) as nombre");
+
+      $condicion = array("1" => "1");
+
+      $inner = array("employee em:people pe" => "em.people_id=pe.id");
+
+      $result = $consultas->QueryINNERJOIN($inner, $campos, $condicion, "", "em.id");
+
+      if ($result == CONSULTAS_SUCCESS)
+      {
+          $html = "<select name='$id' id='$id' $extra>";
+
+          if (!empty($title)):
+              $html .= "<option value=''>$title</option>";
+          endif;
+
+          while ($row = $consultas->Fetch()):
+
+              $html .= "<option value='" . $row["id"] . "' ";
+
+
+              if ($row["id"] == $value):
+
+                  $html .= "selected='selected'";
+              endif;
+
+
+              $html .= ">" . utf8_encode($row["nombre"]) . "</option>";
 
           endwhile;
 
@@ -760,300 +769,6 @@
       return $html;
   }
 
-  function getSucursal($id)
-  {
-      $consultas = new CONSULTAS();
-
-      $campos = array("id", "name");
-      $condicion = array("id" => $id);
-
-      $result = $consultas->SeleccionarTablaFila("fs_branch", $campos, $condicion, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $fila = $consultas->Fetch();
-
-          $name = utf8_encode($fila["name"]);
-      }
-      else
-      {
-          $name = "";
-      }
-
-      return $name;
-  }
-
-  function selectRegion($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("DISTINCT(region) as region");
-      $condiciones = array("status" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_branch", $campos, $condiciones, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          // if(!empty($title)):
-          $html .= "<option value=''>$title</option>";
-          // endif;
-
-          while ($row = $consultas->Fetch()):
-
-              if ($row["region"] != ""):
-                  $html .= "<option value='" . $row["region"] . "' ";
-
-
-                  if ($row["region"] == $value):
-
-                      $html .= "selected='selected'";
-                  endif;
-
-
-                  $html .= ">" . ($row["region"]) . "</option>";
-              endif;
-
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-
-  function selectDivision($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("DISTINCT(division) as division");
-      $condiciones = array("status" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_branch", $campos, $condiciones, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          // if(!empty($title)):
-          $html .= "<option value=''>$title</option>";
-          // endif;
-
-          while ($row = $consultas->Fetch()):
-
-              if ($row["division"] != ""):
-                  $html .= "<option value='" . $row["division"] . "' ";
-
-
-                  if ($row["division"] == $value):
-
-                      $html .= "selected='selected'";
-                  endif;
-
-
-                  $html .= ">" . ($row["division"]) . "</option>";
-
-              endif;
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-
-  function selectEjecutivo($id, $id_gerente, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("fs_user.id", "fs_people.name");
-      $condiciones = array("fs_user.status" => "1", "fs_user.profile_id" => NIVEL_EJECUTIVO,"fs_user.branch_id"=>$id_gerente);
-
-      $inner = array("fs_user:fs_people" => "fs_user.people_id=fs_people.id");
-
-      $result = $consultas->QueryINNERJOIN($inner, $campos, $condiciones, "", "fs_people.name");
-
-      //$result = $consultas->SeleccionarTablaFila("fs_user", $campos, $condiciones, "", "name");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          // if(!empty($title)):
-          $html .= "<option value=''>$title</option>";
-          // endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["id"] . "' ";
-
-
-              if ($row["id"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . utf8_encode($row["name"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-
-  function selectCampaign($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("id","name");
-      $condiciones = array("status" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_campaign", $campos, $condiciones, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          // if(!empty($title)):
-          $html .= "<option value=''>$title</option>";
-          // endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["id"] . "' ";
-
-
-              if ($row["name"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . utf8_encode($row["name"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-
-  function selectContrato($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("fs_contract.contract_number_id as contrato");
-      $condiciones = array("status" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_contract", $campos, $condiciones, "", "contrato");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          // if(!empty($title)):
-          $html .= "<option value=''>$title</option>";
-          // endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["contrato"] . "' ";
-
-
-              if ($row["contrato"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . ($row["contrato"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-
-  function selectPuesto($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("id", "name");
-      $condiciones = array("status" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_profile", $campos, $condiciones, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          // if(!empty($title)):
-          $html .= "<option value=''>$title</option>";
-          // endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["id"] . "' ";
-
-
-              if ($row["id"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . utf8_encode($row["name"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-
-  function selectAsignacion($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("DISTINCT(score) as valor");
-      $condiciones = array("status" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_contract", $campos, $condiciones, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          // if(!empty($title)):
-          $html .= "<option value=''>$title</option>";
-          // endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["valor"] . "' ";
-
-
-              if ($row["valor"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . utf8_encode($row["valor"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-
-
-
   function toBytes($bytes)
   {
       if ($bytes >= 1073741824)
@@ -1108,117 +823,3 @@
       return $reparto;
   }
   
-  
-  function selectRespuesta($id, $tipo='CALL',$value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("id","code", "name");
-      $condiciones = array("status" => "1","type"=>$tipo);
-
-      $result = $consultas->SeleccionarTablaFila("fs_type_answer", $campos, $condiciones, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          if (!empty($title)):
-              $html .= "<option value=''>$title</option>";
-          endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["id"] . "' ";
-
-
-              if ($row["id"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . utf8_encode($row["name"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-  
-  
-  function selectTipoContacto($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("id", "name");
-      $condiciones = array("status" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_type_contact", $campos, $condiciones, "", "id");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          if (!empty($title)):
-              $html .= "<option value=''>$title</option>";
-          endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["id"] . "' ";
-
-
-              if ($row["id"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . utf8_encode($row["name"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }
-  
-  
-  
-  function selectTipoRenovacion($id, $value = '', $title = '', $extra = '')
-  {
-      $consultas = new CONSULTAS();
-      $campos = array("DISTINCT(type_renovation) as name");
-      $condiciones = array("1" => "1");
-
-      $result = $consultas->SeleccionarTablaFila("fs_contract", $campos, $condiciones, "", "name");
-
-      if ($result == CONSULTAS_SUCCESS)
-      {
-          $html = "<select name='$id' id='$id' $extra>";
-
-          if (!empty($title)):
-              $html .= "<option value=''>$title</option>";
-          endif;
-
-          while ($row = $consultas->Fetch()):
-
-              $html .= "<option value='" . $row["name"] . "' ";
-
-
-              if ($row["name"] == $value):
-
-                  $html .= "selected='selected'";
-              endif;
-
-
-              $html .= ">" . utf8_encode($row["name"]) . "</option>";
-
-          endwhile;
-
-          $html .= "</select>";
-      }
-
-      return $html;
-  }

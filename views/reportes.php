@@ -1,33 +1,33 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-sm-12 col-md-12">
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12 col-md-12">
                 <?php include "menu_reporte.php"; ?>
             </div>
         </div>
 
         <div class="row">
 
-            <div class="col-md-12 bgk_blanco_general" style="padding: 20px;">
+            <div class="col-sm-12 col-md-12 bgk_blanco_general" style="padding: 20px;">
 
                 <div class="row margen_bottom_20">
-                    <div class="col-md-12"></div>
+                    <div class="col-sm-12 col-md-12"></div>
                 </div>
 
                 <div class="row margen_bottom_20">
-                    <div class="col-md-5"></div>
-                    <div class="col-md-4 texto_23">
+                    <div class="col-sm-5 col-md-5"></div>
+                    <div class="col-sm-4 col-md-4 texto_23">
                         <div class="row">
                             <div class="col-md-12 texto_21"><img src="gfx/img/icono_izquierda.png"> &nbsp; JULIO &nbsp;<img src="gfx/img/icono_derecha.png"></div>
                         </div>
                     </div>
-                    <div class="col-md-3 texto_23">
+                    <div class="col-sm-3 col-md-3 texto_23">
                         <div class="row"><div class="col-md-12 texto_21"><img src="gfx/img/icono_menos.png"> &nbsp; 2014 &nbsp;<img src="gfx/img/icono_mas.png"></div></div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12 col-md-12">
                         <table class="table table-striped">
                             <thead>
                             <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Fecha</th>
@@ -61,10 +61,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12" style="border-bottom: solid 2px #d5d5d5; "></div>
+                    <div class="col-sm-12 col-md-12" style="border-bottom: solid 2px #d5d5d5; "></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12 col-md-12">
                         <table class="table table-striped">
                             <thead>
                             <th><img src="gfx/img/linea_entre_secciones.png">&nbsp;Fecha</th>

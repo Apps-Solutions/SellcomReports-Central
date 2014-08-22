@@ -1,10 +1,8 @@
 <?php
-
   class MYSESSION
   {
 
       var $m_id;
-      var $m_user;
       var $m_nombre;
       var $m_nivel;
       var $m_email;
@@ -21,7 +19,6 @@
           $MyDebug->SetDebug(1);
 
           $this->m_id = "";
-          $this->m_user = "";
           $this->m_nombre = "";
           $this->m_nivel = 0;
           $this->m_email = "";
@@ -31,13 +28,12 @@
                   isset($_SESSION['my_name']) && ($_SESSION['my_name'] != "") &&
                   isset($_SESSION['my_nivel']) && ($_SESSION['my_nivel'] != "") &&
                   isset($_SESSION['my_id']) && ($_SESSION['my_id'] != "") &&
-                  isset($_SESSION['my_user']) && ($_SESSION['my_user'] != "")
+                  isset($_SESSION['my_email']) && ($_SESSION['my_email'] != "")
           )
           {
               $this->m_nombre = $_SESSION['my_name'];
               $this->m_nivel = $_SESSION['my_nivel'];
               $this->m_email = $_SESSION['my_email'];
-              $this->m_user = $_SESSION['my_user'];
               $this->m_id = $_SESSION['my_id'];
 
               $MyDebug->DebugMessage("SESSION::Login:[" . $this->m_nivel . "][" . $this->m_email . "][" . $this->m_id . "]");
@@ -52,11 +48,6 @@
       function LoggedIn()
       {
           return ($this->m_id != "");
-      }
-
-      function User()
-      {
-          return $this->m_user;
       }
 
       function Name()
@@ -74,12 +65,6 @@
           return $this->m_email;
       }
 
-      function Branch()
-      {
-          return $this->m_branch_id;
-      }
-      
-      
       function Id()
       {
           return $this->m_id;
@@ -107,7 +92,6 @@
           $_SESSION['my_name'] = "";
           $_SESSION['my_email'] = "";
           $_SESSION['my_id'] = "";
-          $_SESSION['my_user'] = "";
           $_SESSION['my_nivel'] = 0;
           session_destroy();
           session_start();
@@ -115,5 +99,4 @@
       }
 
   }
-
-  $MySession = new MYSESSION;  
+  $MySession = new MYSESSION;

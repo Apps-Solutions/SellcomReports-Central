@@ -117,10 +117,10 @@ input[type="submit"]{
     width: 100%;
 }
 
+
 input {
     text-align: center;
 }
-
 
 .bg_color_menu_negocio {
     background-color: #34b05f;
@@ -138,7 +138,6 @@ input {
     color: #fff;
 }
 
-
 .bg_color_menu_active {
     background-color: #34b05f;
     border-top-left-radius: 10px;
@@ -149,8 +148,6 @@ input {
     margin-top: 5px;
 }
 
-
-
 .bg_color_menu_inactive {
     margin-top: 13px;
     background-color:#d5d5d5;
@@ -158,8 +155,7 @@ input {
     border-top-right-radius: 10px;
     color: #fff;
     height: 45px;
-        padding: 10px;
-
+    padding: 10px;
 }
 
 .padding_menu_10 {
@@ -170,11 +166,11 @@ select {
     width: 100%;
     height: 30px;
     font-size: 14px;
+    text-align: center;
 }
 
 .select_filtro {
     background-color: #83c299;
-    /*background-image: url("../gfx/img/icono_abajo.png");*/
     background-position: 100.5% center;
     background-repeat: no-repeat;
     border: 0 none;
@@ -182,7 +178,6 @@ select {
     overflow: auto;
     padding-top: 4px;
 }
-
 
 .select_filtro_negocio {
     background-color: #d5d5d5;
@@ -198,8 +193,6 @@ select {
     font-size: 17px;
 }
 
-
-
 .bgk_menu_lista 
 {
     padding: 30px;
@@ -208,9 +201,6 @@ select {
     background-color: #fff;
     border-bottom: solid 2px #d5d5d5;
 }
-
-
-
 
 .bgk_blanco_general {
     border-radius: 10px;
@@ -224,7 +214,6 @@ select {
 
 .select_filtro_finanzas {
     background-color: #d5d5d5;
-    //background-image: url("../gfx/img/icono_abajo.png");
     background-position: 100% center;
     background-repeat: no-repeat;
     border: 0 none;
@@ -254,6 +243,12 @@ button {
     width: 100px;
 }
 
+
+button:hover {
+    background-color: #262626;
+    border:solid 1px #262626;
+}
+
 navbar {
     height: 50px;
 }
@@ -264,9 +259,9 @@ navbar {
 }
 
 .padding_titulo_menu {
-padding-top: 10px;
-padding-bottom: 20px;
-padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 30px;
 }
 
 .tabla_grafica thead th {

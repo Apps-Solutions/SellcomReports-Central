@@ -13,6 +13,7 @@
       $http_vars["MsgErr"] .= "Favor de llenar el campo Usuario\n";
       $error = true;
   }
+
   if (empty($contrasena))
   {
       $http_vars["MsgErr"] .= "Favor de llenar el campo Contrase&ntilde;a\n";
@@ -20,17 +21,15 @@
   }
   if ($error == false)
   {
-      
-      //$result = $login->Loggin($usuario, md5($contrasena));
 
-      //if ($result == LOGIN_SUCCESS)
-      if($usuario == 'mtarangov' && $contrasena =='mtarangov')
+      $result = $login->Loggin($usuario, ($contrasena));
+
+      if ($result == LOGIN_SUCCESS)
       {
-          $MySession->setVar('my_name', 'Ricardo Centeno');
-          $MySession->SetVar('my_nivel', '4');
-          $MySession->SetVar('my_email', 'ricardo@gmail.com');
-          $MySession->SetVar('my_id', '2');
-          $MySession->SetVar('my_user', 'RICHAR');
+          $MySession->setVar('my_name', $login->Name());
+          $MySession->SetVar('my_nivel', $login->Level());
+          $MySession->SetVar('my_email', $login->Email());
+          $MySession->SetVar('my_id', $login->Id());
 
           $location = "index.php";
       }
@@ -39,13 +38,12 @@
           $http_vars["MsgErr"] .= "El Usuario o la Contrase&ntilde;a no son correctos ";
           $location = "index.php?command=" . LOGIN;
       }
-      
-    
   }
   else
   {
       $location = "index.php?command=" . LOGIN;
   }
+  
   $_SESSION["cookie_http_vars"] = $http_vars;
   header("HTTP/1.1 302 Moved Temporarily");
   header("Location: $location");

@@ -4,11 +4,9 @@
   {
 
       var $m_ibd;
-      var $m_user;
       var $m_nombre;
       var $m_nivel;
       var $m_email;
-      var $m_branch_id;
       var $m_id;
       var $m_plantilla;
       private $msg;
@@ -23,11 +21,6 @@
       {
           $this->m_ibd = new IBD;
           $this->m_plantilla = new Plantilla;
-      }
-
-      function User()
-      {
-          return $this->m_user;
       }
 
       function Name()
@@ -45,11 +38,6 @@
           return $this->m_email;
       }
 
-      function Branch()
-      {
-          return $this->m_branch_id;
-      }
-
       function Id()
       {
           return $this->m_id;
@@ -57,10 +45,16 @@
 
       function Loggin($usuario, $hash)
       {
-          $consulta = "SELECT p.name,p.email, u.profile_id, u.username, u.id,u.branch_id 
-                                FROM fs_people p
-                                INNER JOIN fs_user u ON p.id=u.people_id
-                                WHERE u.username='$usuario' AND u.password='$hash' AND u.status=1";
+          /* $consulta = "SELECT p.id,CONCAT(p.first_name,' ',p.last_name) AS nombre, p.email, u.profile_id
+            FROM people p
+            INNER JOIN user u ON p.id=u.people_id
+            WHERE p.email='" . $usuario . "' AND u.password='" . $hash . "'"; */
+
+          $consulta = "SELECT e.id as id_empleado,CONCAT(p.first_name,' ',p.last_name) AS nombre, p.email, u.profile_id 
+                        FROM employee e  
+                        INNER JOIN people p ON e.people_id=p.id
+                        INNER JOIN user u ON e.people_id=u.people_id 
+                        WHERE p.email='" . $usuario . "' AND u.password='" . $hash . "'";
 
           //echo $consulta;
           if (($result = $this->m_ibd->Query("Login", $consulta)) != IBD_SUCCESS)
@@ -76,19 +70,16 @@
 
           $registro = $this->m_ibd->Fetch("Login");
 
-
           if (!$registro)
           {
               $result = LOGIN_DBFAILURE;
           }
           else
           {
-              $this->m_nombre = utf8_encode($registro['name']);
-              $this->m_user = $registro["username"];
+              $this->m_nombre = utf8_encode($registro['nombre']);
               $this->m_nivel = $registro['profile_id'];
               $this->m_email = $registro['email'];
-              $this->m_id = $registro['id'];
-              $this->m_branch_id = $registro['branch_id'];
+              $this->m_id = $registro['id_empleado'];
 
               $result = LOGIN_SUCCESS;
               $this->msg = "SUCCESS @class LOGIN::Loggin usuario[" . $usuario . "] password[" . $hash . "]";
