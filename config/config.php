@@ -28,4 +28,3 @@
 
   /*   * *********LOGIGA DEL SISTEMA********* */
   require 'config.logic.php';
-  

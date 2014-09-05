@@ -6,11 +6,9 @@
   {
       case 'get':
           $CONTEXT = & $_GET;
-          //$http_vars = $HTTP_GET_VARS;
           break;
       case 'post':
           $CONTEXT = & $_POST;
-          //$http_vars = $HTTP_POST_VARS;
           break;
       default:
           $CONTEXT = array();
@@ -43,18 +41,18 @@
 
 
 
-  $months = Array(1 => "Ene",
-       2 => "Feb",
-       3 => "Mar",
-       4 => "Abr",
-       5 => "May",
-       6 => "Jun",
-       7 => "Jul",
-       8 => "Ago",
-       9 => "Sep",
-       10 => "Oct",
-       11 => "Nov",
-       12 => "Dic");
+  $months = Array(1 => "Enero",
+       2 => "Febrero",
+       3 => "Marzo",
+       4 => "Abril",
+       5 => "Mayo",
+       6 => "Junio",
+       7 => "Julio",
+       8 => "Agosto",
+       9 => "Septiembre",
+       10 => "Octubre",
+       11 => "Noviembre",
+       12 => "Diciembre");
 
 
 
@@ -448,50 +446,34 @@
       return $msg;
   }
 
-  function makeHTMLOrder($order, $ordercampo, $campo, $caption, $page, $width, $id = '')
+  function makeHTMLOrder($order, $ordercampo, $campo, $caption, $page, $width)
   {
-
-
       if ($campo == $ordercampo && (!empty($campo) && !empty($ordercampo)))
       {
           $order = $order == "ASC" ? "DESC" : "ASC";
 
-          $thisClass = $order == "ASC" ? "class='MyASC agustar_2'" : "class='MyDESC agustar_2'";
-          $flecha = $order == "ASC" ? "<div class='clas_arriba'><a href=\"javascript:PaginacionSubmit('$page','$campo','$order');\"></a></div>" : "<div class='clas_abajo'><a href=\"javascript:PaginacionSubmit('$page','$campo','$order');\"></a></div>";
+          $thisClass = $order == "ASC" ? "class='MyASC'" : "class='MyDESC'";
+
+          $thisimagen = $order == "ASC" ? "<img src='gfx/img/icono_arriba.png'>&nbsp;" : "<img src='gfx/img/icono_abajo.png'>&nbsp;";
       }
       else
       {
-          $thisClass = "class='MyASC agustar_2'";
-          $flecha = "<div class='clas_abajo'><a href=\"javascript:PaginacionSubmit('$page','$campo','$order');\"></a></div>";
+          $thisClass = "class='MyDESC'";
+          $thisimagen = "<img src='gfx/img/icono_abajo.png'>&nbsp;";
       }
+
 
       if (!empty($width))
       {
           $thisWidth = "width='$width'";
       }
 
-      if (!empty($order) && !empty($caption))
+      if (!empty($caption))
       {
-          $caption = "<div class='clas_titulos'><a href=\"javascript:PaginacionSubmit('$page','$campo','$order');\" >$caption</a></div>";
-      }
-      else if (!empty($id) && !empty($caption))
-      {
-          $caption = "<a href='#' data-toggle='modal' data-target='.bs-usuario-modal-lg' >$caption</a>";
-      }
-      else
-      {
-          $caption = $caption;
-          $flecha = "";
+          $caption = "<a href=\"javascript:PaginacionSubmit('$page','$campo','$order');\" >$thisimagen $caption</a>";
       }
 
-      if (!empty($id))
-      {
-          $id = "id='$id'";
-      }
-
-
-
-      print ("<td $id  $thisWidth  $thisClass>$caption &nbsp; " . $flecha . "</td>");
+      print ("<th $thisClass> $caption</th>");
   }
 
   function selectTipoMoneda($id, $value = '', $title = '', $extra = '')
@@ -685,6 +667,46 @@
       return $html;
   }
 
+  function selectTipo($id, $value = '', $title = '', $extra = '')
+  {
+      $consultas = new CONSULTAS();
+      $campos = array("id", "name");
+
+      $condicion = array("1" => "1");
+
+      $tabla = "types";
+
+      $result = $consultas->SeleccionarTablaFila($tabla, $campos, $condicion, $group = '', $order = 'id');
+
+      if ($result == CONSULTAS_SUCCESS)
+      {
+          $html = "<select name='$id' id='$id' $extra>";
+
+          if (!empty($title)):
+              $html .= "<option value=''>$title</option>";
+          endif;
+
+          while ($row = $consultas->Fetch()):
+
+              $html .= "<option value='" . $row["id"] . "' ";
+
+
+              if ($row["id"] == $value):
+
+                  $html .= "selected='selected'";
+              endif;
+
+
+              $html .= ">" . utf8_encode($row["name"]) . "</option>";
+
+          endwhile;
+
+          $html .= "</select>";
+      }
+
+      return $html;
+  }
+
   function makeHTMLPaginarListado($numrows1, $maxPage, $terminamosconel, $paginanum, $by, $order, $tampag)
   {
       if ($terminamosconel >= $numrows1)
@@ -821,5 +843,40 @@
       }
 
       return $reparto;
+  }
+
+  function calendar($month, $year)
+  {
+      $dato = array();
+
+
+      $current_month = date("m");
+      $current_year = date("Y");
+
+
+      if (!empty($month))
+      {
+          if ($month < 10)
+          {
+              $month = "0" . $month;
+
+              $current_month = $month - 1;
+          }
+          else
+          {
+              $current_month = $month;
+          }
+      }
+
+
+
+
+
+
+      $dato["month"] = $current_month;
+      //$dato["year"] = date("Y");
+
+
+      return $dato;
   }
   

@@ -7,87 +7,158 @@ and open the template in the editor.
     Created on : 11-ago-2014, 9:55:31
     Author     : marcos.martinez
 */
-body {
-    background-image: url('../gfx/main/fondo.png'); 
-    background-size: 100%;
-    font-family: '../fonts/HelveticaNeue.dfont';
+
+@font-face
+{
+    font-family: "HelveticaNeue";
+    src: local('HelveticaNeue'), url(../fonts/HelveticaNeue.dfont);
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
 }
 
+
+body 
+{
+    background-image: url('../gfx/main/fondo.png'); 
+    background-size: 100%;
+    font-family: 'HelveticaNeue';
+    font-size: 1.2em;
+    color: #343434;
+}
+
+
+
+span 
+{
+    display: inline;    
+}
+
+
 a{ color: #000;}
+
 a:link {text-decoration: none;}
 a:hover {color: #34b05f;}
 
-.menu_reporte a {
+select 
+{
+    width: 100%;
+    height: 30px;
+    font-size: 1em;
+    text-align: center;
+    border:0px;
+    border-radius: 0;
+
+}
+
+input[type="submit"]
+{
+    color: #fff;
+    width: 80%;
+    height: 25px;
+    cursor:pointer;
+    border-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;  
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: #34b05f;
+    width: 100%;
+}
+
+
+input 
+{
+    text-align: center;
+}
+
+
+
+.menu_reporte a 
+{
     color: #fff;
 }
 
 
 
-.height_main {
+.height_main 
+{
     height: 50px;
 }
 
-.img_main {
+.img_main 
+{
     margin-left: 100px;
     margin-top: 5px;
 }
 
 
-.textbox {
-    height: 25px;
-    background-color:#fff;
+.textbox-login, .textbox, .textbox-finanzas
+{
+    height: 30px;
     width: 100%;
     color: #555;
-    padding:2px;
-    border:1px solid #ddd;
-    border-radius: 10px;
-    -moz-border-radius-bottomleft: 10px;  
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: 300;
+    border: 2px solid #ddd;
 }
 
-.textbox-finanzas {
-    height: 30px;
+.textbox-finanzas 
+{
     background-color:#d5d5d5;
-    width: 100%;
     color: #8a8989;
-    padding:2px;
-    border:1px solid #ddd;
-    /* -moz-border-radius-bottomleft: 10px;  
-     -moz-border-radius: 10px;
-     -webkit-border-radius: 10px;*/
-    font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: 300;
+}
+
+.textbox-login
+{
+    border-radius: 6px;
+    height: 30px;
 }
 
 
-.margen_bottom_5 {
+
+.select_negocio
+{
+    background: #83c299;
+}
+
+.select_general
+{
+    background: #d5d5d5;
+}
+
+
+
+
+.margen_bottom_5 
+{
     margin-bottom: 5px;
 }
 
-.margen_bottom_10 {
+.margen_bottom_10 
+{
     margin-bottom: 10px;
 }
 
-.margen_bottom_20 {
+.margen_bottom_20 
+{
     margin-bottom: 20px;
 }
 
 
-.margen_top_20 {
+
+.margen_top_5 
+{
+    margin-top: 5px;
+}
+
+.margen_top_10 
+{
+    margin-top: 10px;
+}
+
+.margen_top_20 
+{
     margin-top: 20px;
 }
 
-.margen_top_10 {
-    margin-top: 10px;
-}
+
 
 
 .css_login {
@@ -104,94 +175,52 @@ a:hover {color: #34b05f;}
 }
 
 
-input[type="submit"]{
-    color: #fff;
-    width: 205px;
-    height: 25px;
-    cursor:pointer;
-    border-radius: 10px;
-    -moz-border-radius-bottomleft: 10px;  
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    background-color: #34b05f;
-    width: 100%;
-}
 
 
-input {
-    text-align: center;
-}
-
-.bg_color_menu_negocio {
-    background-color: #34b05f;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    color: #fff;
-    height: auto;
-
-}
 
 .bg_color_menu {
     background-color: #34b05f;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 10px;
 }
 
-.bg_color_menu_active {
+.margen_negocio_dato
+{
     background-color: #34b05f;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     color: #fff;
-    height: 53px;
-    padding: 10px;
-    margin-top: 5px;
+    padding: 5px;
+    margin-left: 1px;
+    margin-right: 1px;
 }
 
-.bg_color_menu_inactive {
-    margin-top: 13px;
-    background-color:#d5d5d5;
+.menu_active, .menu_inactive {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: #fff;
-    height: 45px;
+    font-size: 1.5em;
     padding: 10px;
+
+}
+
+.menu_active {
+    background-color: #34b05f;
+
+}
+
+.menu_inactive {
+    background-color:#d5d5d5;
+    height: 50%;
+
 }
 
 .padding_menu_10 {
     padding: 10px;
 }
 
-select {
-    width: 100%;
-    height: 30px;
-    font-size: 14px;
-    text-align: center;
-}
-
-.select_filtro {
-    background-color: #83c299;
-    background-position: 100.5% center;
-    background-repeat: no-repeat;
-    border: 0 none;
-    float: left;
-    overflow: auto;
-    padding-top: 4px;
-}
-
-.select_filtro_negocio {
-    background-color: #d5d5d5;
-    background-position: 100% center;
-    background-repeat: no-repeat;
-    border: 0 none;
-    float: left;
-    overflow: auto;
-    padding-top: 4px;
-}
-
-.texto_titulo_main {
-    font-size: 17px;
-}
 
 .bgk_menu_lista 
 {
@@ -207,24 +236,9 @@ select {
     background-color: #fff;
 }
 
-.texto_titulo_seccion_finanzas {
-    font-size: 14px;
-}
-
-
-.select_filtro_finanzas {
-    background-color: #d5d5d5;
-    background-position: 100% center;
-    background-repeat: no-repeat;
-    border: 0 none;
-    float: left;
-    overflow: auto;
-    padding-top: 4px;
-}
-
 
 .texto_21 {
-    font-size: 21px;
+    font-size: 1.5em;
 }
 
 .texto_24 {
@@ -237,16 +251,17 @@ select {
 
 button {
     background-color: #34b05f;
-    border:solid 1px #34b05f;
+    border: solid 1px #34b05f;
     color: #fff;
-    height: 35px;
-    width: 100px;
+    height: 30px;
+    width: 60%;
+
 }
 
 
 button:hover {
     background-color: #262626;
-    border:solid 1px #262626;
+    border: solid 1px #262626;
 }
 
 navbar {
@@ -254,8 +269,8 @@ navbar {
 }
 
 .padding_titulo_principal {
-    padding-top: 10px; 
-    padding-bottom: 10px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
 }
 
 .padding_titulo_menu {
@@ -267,5 +282,17 @@ navbar {
 .tabla_grafica thead th {
     background-color: #34b05f;
     color: #fff;
-    font-size: 14px;
+    vertical-align: top;
+}
+
+
+.MyASC a{
+    color: #262626;
+    text-decoration:none;
+}
+
+.MyDESC a{
+    color: #262626;
+    text-decoration:none;
+
 }

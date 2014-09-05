@@ -43,7 +43,7 @@
   {
       $location = "index.php?command=" . LOGIN;
   }
-  
+
   $_SESSION["cookie_http_vars"] = $http_vars;
   header("HTTP/1.1 302 Moved Temporarily");
   header("Location: $location");

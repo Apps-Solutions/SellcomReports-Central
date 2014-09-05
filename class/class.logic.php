@@ -1,75 +1,87 @@
 <?php
-class INDEX
-{
-	var $m_js;
-	var $m_content;
-	var $m_title;
-	var $m_css;
-        var $m_ajax;
 
-	function INDEX()
-	{
-		$this->m_js         = "";
-		$this->m_content    = "";
-		$this->m_title      = "";
-		$this->m_css        = "";
-                $this->m_ajax        = "";
-	}
+  class INDEX
+  {
 
-	function Title()
-	{
-		return $this->m_title;
-	}
+      var $f_js;
+      var $f_file;
+      var $f_title;
+      var $f_css;
+      var $f_ajax;
+      var $f_model;
 
-	function MyPHPFile()
-	{
-		return $this->m_content;
-	}
+      function INDEX()
+      {
+          $this->f_js = "";
+          $this->f_file = "";
+          $this->f_title = "";
+          $this->f_css = "";
+          $this->f_ajax = "";
+          $this->f_model = "";
+      }
 
-	function MyJSFile()
-	{
-		return $this->m_js;
-	}
+      function Title()
+      {
+          return $this->f_title;
+      }
 
-	function MyCSSFile()
-	{
-		return $this->m_css;
-	}
+      function PHPFile()
+      {
+          return $this->f_file;
+      }
 
-	function MyAjaxFile()
-	{
-		return $this->m_ajax;
-	}
-	function MyCommand()
-	{
-		return $this->m_command;
-	}
+      function ModelFile()
+      {
+          return $this->f_model;
+      }
+
+      function JSFile()
+      {
+          return $this->f_js;
+      }
+
+      function CSSFile()
+      {
+          return $this->f_css;
+      }
+
+      function AjaxFile()
+      {
+          return $this->f_ajax;
+      }
+
+      function Command()
+      {
+          return $this->f_command;
+      }
+
+      function Logic($command)
+      {
+          global $uiCommand;
+          global $MySession;
+
+          if (!in_array($MySession->Level(), $uiCommand[$command][0]))
+          {
+              $command = LOGIN;
+          }
+
+          if (($MySession->LoggedIn() && $command == LOGIN) || !isset($uiCommand[$command]))
+          {
+              $command = HOME;
+          }
 
 
-	function Logic($command)
-	{
-		global $uiCommand;
-                global $MySession;
-                
-                if(!in_array($MySession->Level(),$uiCommand[$command][0])) 
-                {
-                    $command = LOGIN; 
-                }
 
-                if(($MySession->LoggedIn() && $command == LOGIN) || !isset($uiCommand[$command])) 
-                {
-                   $command = HOME; 
-                }
-        
+          $this->f_title = $uiCommand[$command][1];
+          $this->f_file = $uiCommand[$command][2];
+          $this->f_js = $uiCommand[$command][3];
+          $this->f_css = $uiCommand[$command][4];
+          $this->f_ajax = $uiCommand[$command][5];
+          $this->f_model = $uiCommand[$command][6];
+          $this->f_command = $command;
+      }
 
+  }
 
-		$this->m_title      = $uiCommand[$command]['1'];
-		$this->m_content    = $uiCommand[$command]['2'];
-		$this->m_js         = $uiCommand[$command]['3'];
-		$this->m_css        = $uiCommand[$command]['4'];
-                $this->m_ajax       = $uiCommand[$command]['5'];
-                $this->m_command    = $command;
-	}
-}
-
-$MyIndex	= new INDEX;
+  $MyIndex = new INDEX;
+  

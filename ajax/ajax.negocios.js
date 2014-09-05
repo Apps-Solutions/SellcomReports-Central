@@ -46,11 +46,33 @@ function result(response)
         {
             alert(respuesta[0]["success"]);
         }
+        
+        if(respuesta[0] && respuesta[0]["function"])
+        {
+            eval(respuesta[0]["function"]);
+        }
     }
     else
     {
         alert("Error de conexion, tiempo de espera agotado");
     }
+}
+
+function editarPorcentaje()
+{
+    var id = $("input[name='id_deal']").val();
+    var valor = $("input[name='txt_estatus_edit']").val();
+
+
+    var query = "function=edita_Porcentaje&vars_ajax[]=" + id + "&vars_ajax[]=" + valor;
+
+    pasarelaAjax("POST", query, "result", "");
+}
+
+function setPorcentaje(id_deal, valor)
+{
+    $("input[name='id_deal']").val(id_deal);
+    $("input[name='txt_estatus_edit']").val(valor);
 }
 
 
@@ -63,5 +85,9 @@ $(document).ready(function() {
 
     $("#guarda_deal").click(function() {
         guarda_Informacion();
+    });
+    
+     $("#edita_porcentaje").click(function() {
+        editarPorcentaje();
     });
 });

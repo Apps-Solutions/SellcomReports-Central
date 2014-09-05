@@ -1,6 +1,6 @@
 <?php
   require 'init.php';
-  $command = isset($_POST['command']) ? $_POST['command'] : $_GET['command'];
+  $command = isset($_POST['controller']) ? $_POST['controller'] : $_GET['controller'];
   $MyIndex->Logic($command);
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Reportes KPIS SELLCOM</title>
+        <title>Reportes KPI'S SELLCOM</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/estilos.css" rel="stylesheet">
         <script src="jquery/jquery-1.11.1.min.js"></script>
@@ -18,15 +18,14 @@
 
         <script src='ajax/ajax.js'  type='text/javascript'></script>
         <script src='jquery/js/functions.js'  type='text/javascript'></script>
-        <?php if ($MyIndex->MyAjaxFile() != ""): ?>
-        <script src='ajax/<?php print $MyIndex->MyAjaxFile(); ?>'  type='text/javascript'></script>
+        <?php if ($MyIndex->AjaxFile() != ""): ?>
+              <script src='ajax/<?php print $MyIndex->AjaxFile(); ?>'  type='text/javascript'></script>
               <?php
           endif;
-
-          if ($MyIndex->MyJSFile() != ""):
-              if (count($MyIndex->MyJSFile()) > 0) :
-                  foreach ($MyIndex->MyJSFile() as $js):
-        print ("<script src='jquery/js/" . $js . "'  type='text/javascript'></script>\n");
+          if ($MyIndex->JSFile() != ""):
+              if (count($MyIndex->JSFile()) > 0) :
+                  foreach ($MyIndex->JSFile() as $js):
+                      print ("<script src='jquery/js/" . $js . "'  type='text/javascript'></script>\n");
                   endforeach;
               endif;
           endif;
@@ -42,7 +41,7 @@
         <div class="container">
             <?php
               include_once 'getcookiedata.php';
-              include_once $MyIndex->MyPHPFile();
+              include_once $MyIndex->PHPFile();
               $MyDebug->Dump();
             ?>
         </div>

@@ -45,10 +45,6 @@
 
       function Loggin($usuario, $hash)
       {
-          /* $consulta = "SELECT p.id,CONCAT(p.first_name,' ',p.last_name) AS nombre, p.email, u.profile_id
-            FROM people p
-            INNER JOIN user u ON p.id=u.people_id
-            WHERE p.email='" . $usuario . "' AND u.password='" . $hash . "'"; */
 
           $consulta = "SELECT e.id as id_empleado,CONCAT(p.first_name,' ',p.last_name) AS nombre, p.email, u.profile_id 
                         FROM employee e  

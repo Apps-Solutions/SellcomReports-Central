@@ -1,5 +1,5 @@
 <!--MODAL AGREGAR-->
-<div class="modal fade bs-otro-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal fade bs-otro-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md"> 
         <div class="modal-content"> 
             <div class="modal-header"> 
@@ -20,7 +20,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <?php echo selectStatus("sel_deal_status", $value = '', $title = 'Selecciona un estatus', $extra = "class='select_filtro_negocio'"); ?>
+                                    <?php echo selectStatus("sel_deal_status", $value = '', $title = 'Selecciona un estatus', $extra = "class='select_general'"); ?>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text" name="txt_deal_nombre" id="nombre" value="" class="textbox-finanzas"  placeholder="Escribe el Nombre"/>
+                                    <input type="text" name="txt_deal_nombre" id="nombre" value="" class="textbox"  placeholder="Escribe el Nombre" maxlength="255"/>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <?php echo selectCliente("sel_deal_cliente", $value = '', $title = '---- Cliente ----', $extra = "class='select_filtro_negocio'"); ?>
+                                    <?php echo selectCliente("sel_deal_cliente", $value = '', $title = '---- Cliente ----', $extra = "class='select_general'"); ?>
                                 </div>
                             </div>
                         </div>
@@ -61,16 +61,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select name="sel_deal_tipo" class="select_filtro_negocio">
-                                        <option value="">Selecciona un tipo</option>
-                                        <option value="PSG">PSG</option>
-                                        <option value="EB">EB</option>
-                                        <option value="IPG">IPG</option>
-                                        <option value="SAMNSUNG">SAMNSUNG</option>
-                                        <option value="APPLE">APPLE</option>
-                                        <option value="OTROS">OTROS</option>
-                                        <option value="SETVICIOS">SERVICIOS</option>
-                                    </select>
+                                    <?php echo selectTipo("sel_deal_tipo", $tipo, $title = '----Tipo----', $extra = "class='select_general'"); ?>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +78,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <?php echo selectSector("sel_deal_sector", $value = '', $title = '---- Sector ----', $extra = "class='select_filtro_negocio'"); ?>
+                                    <?php echo selectSector("sel_deal_sector", $value = '', $title = '---- Sector ----', $extra = "class='select_general'"); ?>
                                 </div>
                             </div>
                         </div>
@@ -99,10 +90,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" class="textbox-finanzas" name="txt_deal_valor" id="valor_moneda" value="" placeholder="Cantidad" maxlength="10"/>
+                                    <input type="text" class="textbox" name="txt_deal_valor" id="valor_moneda" value="" placeholder="Cantidad" maxlength="10"/>
                                 </div>
                                 <div class="col-md-6">
-                                    <?php echo selectTipoMoneda("sel_deal_moneda", $value = '', $title = '', $extra = "class='select_filtro_negocio'"); ?>
+                                    <?php echo selectTipoMoneda("sel_deal_moneda", $value = '', $title = '', $extra = "class='select_general'"); ?>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +109,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <center>                                    
-                                        <button type="reset" name="cancelar" onclick="" id="cancelar_cliente">Cancelar</button>
+                                        <button type="reset" name="cancelar" id="cancelar_cliente">Cancelar</button>
                                     </center>
                                 </div>
                             </div>
@@ -127,7 +118,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <center>  
-                                        <button type="button" name="guardar" onclick="" id="guarda_deal">Guardar</button> 
+                                        <button type="button" name="guardar" id="guarda_deal">Guardar</button> 
                                     </center>
                                 </div>
                             </div>
@@ -141,16 +132,17 @@
     </div> 
 </div>
 <!--MODAL EDITAR-->
-<div class="modal fade bs-ver-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal fade bs-ver-modal-lg" tabindex="-1" role="dialog"  aria-hidden="false" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md"> 
         <div class="modal-content"> 
             <div class="modal-header"> 
                 <a href="javscript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">
                     <img src="gfx/img/cerrar.png" width="20" height="20" alt="cerrar" title="Cerrar">
                 </a> 
-                <h4 class="modal-title" id="myModalLabel">Cliente | Sector</h4>
+                <h4 class="modal-title" id="frmClienteSector-Modal">Cliente | Sector</h4>
             </div>
             <form name="frmClienteSector" id="frmClienteSector">
+                <input type="hidden" name="id_deal" value="" />
                 <div class="modal-body"> 
                     <div class="row "> 
                         <div class="col-md-12"></div>
@@ -191,7 +183,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="row">
-                                <div class="col-md-12"><button type="button">Editar</button></div>
+                                <div class="col-md-12"><button type="button" id="edita_porcentaje">Editar</button></div>
                             </div>
                         </div>
                     </div>
@@ -201,8 +193,8 @@
                         <div class="col-md-8"></div>
                         <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-11"><button type="button" name="guardar" onclick="" id="">Guardar</button></div>
-                                <div class="col-md-1"></div>
+                                <!--<div class="col-md-11"><button type="button" name="guardar" onclick="" id="">Guardar</button></div>
+                                <div class="col-md-1"></div>-->
                             </div>
                         </div>
                     </div>  
@@ -212,14 +204,14 @@
     </div> 
 </div>
 <!--MODAL CLIENTE-->
-<div class="modal fade bs-nuevo-cliente-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal fade bs-nuevo-cliente-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-md"> 
         <div class="modal-content"> 
             <div class="modal-header"> 
                 <a href="javscript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">
                     <img src="gfx/img/cerrar.png" width="20" height="20" alt="cerrar" title="Cerrar">
                 </a> 
-                <h4 class="modal-title" id="myModalLabel">Nuevo Cliente</h4>
+                <h4 class="modal-title" id="frmCliente-Modal">Nuevo Cliente</h4>
             </div>
             <form name="frmCliente" id="frmCliente">
                 <div class="modal-body"> 
@@ -232,7 +224,7 @@
                             <div class="row">
                                 <div class="col-md-4">Empresa</div>
                                 <div class="col-md-8">
-                                    <input type="text" class="textbox-finanzas" value="" name="txt_cliente" placeholder="Empresa" maxlength="255" required/>
+                                    <input type="text" class="textbox" value="" name="txt_cliente" placeholder="Empresa" maxlength="255" required/>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +241,7 @@
                             <div class="row">
                                 <div class="col-md-4">Nombre:</div>
                                 <div class="col-md-8">
-                                    <input type="text" class="textbox-finanzas" value="" name="txt_nombre" placeholder="Nombre" maxlength="255" required/>
+                                    <input type="text" class="textbox" value="" name="txt_nombre" placeholder="Nombre" maxlength="255" required/>
                                 </div>  
                             </div>
                         </div>
@@ -264,7 +256,7 @@
                             <div class="row">
                                 <div class="col-md-4">Apellido:</div>
                                 <div class="col-md-8">
-                                    <input type="text" class="textbox-finanzas" value="" name="txt_apellido" placeholder="Appellido" maxlength="255" required/>
+                                    <input type="text" class="textbox" value="" name="txt_apellido" placeholder="Apellido" maxlength="255" required/>
                                 </div>  
                             </div>
                         </div>
@@ -279,7 +271,7 @@
                             <div class="row">
                                 <div class="col-md-4">Email:</div>
                                 <div class="col-md-8">
-                                    <input type="email" class="textbox-finanzas" value="" name="txt_email" placeholder="Email" maxlength="255" required/>
+                                    <input type="email" class="textbox" value="" name="txt_email" placeholder="Email" maxlength="255" required/>
                                 </div>
                             </div>
                         </div>
@@ -294,7 +286,7 @@
                             <div class="row">
                                 <div class="col-md-4">Telefono:</div>
                                 <div class="col-md-8">
-                                    <input type="tel" class="textbox-finanzas" value="" name="txt_telefono" placeholder="Teléfono" maxlength="12" required/>
+                                    <input type="tel" class="textbox" value="" name="txt_telefono" placeholder="Teléfono" maxlength="12" required/>
                                 </div>
                             </div>
                         </div>
