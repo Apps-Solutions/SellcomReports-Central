@@ -108,6 +108,7 @@ $(document).ready(function() {
 
     $("#guarda_otros").click(function() {
         guarda_Otros();
+        document.frmOtros.reset();
     });
 
     $("#btn_consulta").click(function() {
@@ -116,6 +117,7 @@ $(document).ready(function() {
 
     $("#guarda_kpi").click(function() {
         guarda_Kpis();
+        document.frmKpis.reset();
     });
 
 

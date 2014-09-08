@@ -306,7 +306,7 @@
       return $respuesta;
   }
 
-  function edita_Porcentaje($id, $valor)
+  function edita_Porcentaje($id, $estatus, $valor, $porcentaje)
   {
       global $MySession;
       $_error = FALSE;
@@ -315,7 +315,7 @@
 
       $rules = array(
            "Id" => array("valor" => $id, "numeric", "required"),
-           "Valor" => array("valor" => $valor, "numeric", "required"),
+           "Porcentaje" => array("valor" => $porcentaje, "numeric", "required"),
       );
 
 
@@ -336,7 +336,7 @@
 
       if ($_error == FALSE)
       {
-          $result = $MyNegocio->editar_Porcentaje($id, $valor);
+          $result = $MyNegocio->editar_Porcentaje($id, $porcentaje, $estatus, $valor);
 
           if ($result == REGISTRO_SUCCESS)
           {

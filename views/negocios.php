@@ -126,7 +126,7 @@
                           <td><?php print $fila["deal_name"]; ?></td>
                           <td><?php print $fila["tipo"]; ?></td>
                           <td><?php print $fila["value"]; ?></td>
-                          <td><a href="javascript: void(0);" onclick="setPorcentaje(<?php echo $fila["id"]; ?>,<?php echo $fila["advance_percent"]; ?>);" data-toggle='modal' data-target='.bs-ver-modal-lg'><img src="gfx/img/ver.png" width="23" height="23" alt="<?php echo $fila["deal_name"]; ?>" /></a></td>
+                          <td><a href="javascript: void(0);" onclick="setPorcentaje(<?php echo $fila["id"]; ?>,<?php echo $fila["advance_percent"]; ?>,<?php echo $fila["id_deal_status"];?>,<?php echo $fila["value"];?>);" data-toggle='modal' data-target='.bs-ver-modal-lg'><img src="gfx/img/ver.png" width="23" height="23" alt="<?php echo $fila["deal_name"]; ?>" /></a></td>
                       </tr>
                       <?php
                   endwhile;

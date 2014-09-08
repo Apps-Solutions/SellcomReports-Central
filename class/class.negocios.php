@@ -85,6 +85,7 @@
                "d.delete_status",
                "c.name as moneda",
                "se.name as sector",
+               "ds.id as id_deal_status",
                "ds.name as deal_status",
                "cu.company_name as cliente",
                "ti.name as tipo");
@@ -114,12 +115,24 @@
           return $this->getColeccion($page, $tampag, $grupo, $orden, $tabla, $campos, $condiciones);
       }
 
-      function editar_Porcentaje($id, $valor)
+      function editar_Porcentaje($id, $porcentaje, $estatus = '', $valor = '')
       {
 
-          $nvoregistro = array("advance_percent" => "'" . $valor . "'");
-          $condiciones = array("id" => $id);
-          $tabla = "deal";
+          $nvoregistro = array("advance_percent" => "'" . $porcentaje . "'");
+
+          if ($estatus != '')
+          {
+              $nvoregistro["deal_status_id"] = "'" . $estatus . "'";
+          }
+
+          if ($valor != '')
+          {
+              $nvoregistro["value"] = "'" . $valor . "'";
+          }
+
+          $condiciones = array("deal_id" => $id);
+
+          $tabla = "deal_history";
 
           return $this->editarRegistro($tabla, $nvoregistro, $condiciones);
       }

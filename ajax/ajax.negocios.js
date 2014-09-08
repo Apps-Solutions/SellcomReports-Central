@@ -46,8 +46,8 @@ function result(response)
         {
             alert(respuesta[0]["success"]);
         }
-        
-        if(respuesta[0] && respuesta[0]["function"])
+
+        if (respuesta[0] && respuesta[0]["function"])
         {
             eval(respuesta[0]["function"]);
         }
@@ -61,18 +61,33 @@ function result(response)
 function editarPorcentaje()
 {
     var id = $("input[name='id_deal']").val();
-    var valor = $("input[name='txt_estatus_edit']").val();
 
+    var estatus = $("select[name='sel_deal_status_d']").val();
+    var valor = $("input[name='txt_estatus_edit_val']").val();
+    var porcentaje = $("input[name='txt_estatus_edit']").val();
 
-    var query = "function=edita_Porcentaje&vars_ajax[]=" + id + "&vars_ajax[]=" + valor;
+    var query = "function=edita_Porcentaje&vars_ajax[]=" + id + "&vars_ajax[]=" + estatus + "&vars_ajax[]=" + valor + "&vars_ajax[]=" + porcentaje;
 
     pasarelaAjax("POST", query, "result", "");
 }
 
-function setPorcentaje(id_deal, valor)
+function setPorcentaje(id_deal, porcentaje, estatus, valor)
 {
+    $(".sec_cliente").css("display", "none");
+
+    $("select[name='sel_deal_status_d']").removeAttr("selected");
+
     $("input[name='id_deal']").val(id_deal);
-    $("input[name='txt_estatus_edit']").val(valor);
+    $("input[name='txt_estatus_edit']").val(porcentaje);
+
+    if (estatus == 1)
+    {
+        $(".sec_cliente").css("display", "block");
+
+        $("input[name='txt_estatus_edit_val']").val(valor);
+
+        $("#sel_deal_status_d option[value='" + estatus + "']").attr("selected", "selected");
+    }
 }
 
 
@@ -80,14 +95,17 @@ $(document).ready(function() {
 
     $("#guarda_cliente").click(function() {
         guarda_Cliente();
+        document.frmCliente.reset();
     });
 
 
     $("#guarda_deal").click(function() {
         guarda_Informacion();
+
+        document.frmOtros.reset();
     });
-    
-     $("#edita_porcentaje").click(function() {
+
+    $("#edita_porcentaje").click(function() {
         editarPorcentaje();
     });
 });

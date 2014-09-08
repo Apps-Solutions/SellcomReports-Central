@@ -90,7 +90,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" class="textbox" name="txt_deal_valor" id="valor_moneda" value="" placeholder="Cantidad" maxlength="10"/>
+                                    <input type="text" class="textbox" name="txt_deal_valor" id="valor_moneda" value="" placeholder="Valor" maxlength="10"/>
                                 </div>
                                 <div class="col-md-6">
                                     <?php echo selectTipoMoneda("sel_deal_moneda", $value = '', $title = '', $extra = "class='select_general'"); ?>
@@ -99,12 +99,10 @@
                         </div>
                         <div class="col-md-1"></div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <div class="row">
                         <div class="col-md-1"></div>
-
                         <div class="col-md-5">
                             <div class="row">
                                 <div class="col-md-12">
@@ -124,7 +122,6 @@
                             </div>
                         </div>
                         <div class="col-md-1"></div>
-
                     </div>  
                 </div> 
             </form>
@@ -148,45 +145,51 @@
                         <div class="col-md-12"></div>
                     </div> 
                     <div class="row"> 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-12" style="font-size: 16px;">Nombre</div>
+                                <div class="col-md-12 sec_cliente" style="font-size: 16px; display: none;">Estatus</div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-12" style="font-size: 16px;">Tipo</div>
+                                <div class="col-md-12 sec_cliente" style="font-size: 16px; display: none;">Valor $ MXN</div>
                             </div>
                         </div>
-
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-12" style="font-size: 16px;">Valor $ MXN</div>
+                                <div class="col-md-12" style="font-size: 16px;">% Porcentaje</div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
                         </div>
                     </div>
                     <div class="row "> 
                         <div class="col-md-12"></div>
                     </div> 
                     <div class="row"> 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-12" style="font-size: 16px;">Estatus</div>
+                                <div class="col-md-12 sec_cliente" style="display: none;">
+                                    <?php echo selectStatus("sel_deal_status_d", $value = '', $title = 'Selecciona un estatus', $extra = "class='select_general'"); ?>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-12"><input type="text" class="textbox-finanzas" name="txt_estatus_edit" value="" placeholder="80%" maxlength="15" required/></div>
+                                <div class="col-md-12 sec_cliente" style="display: none;"><input type="text" class="textbox-finanzas" name="txt_estatus_edit_val" value="" placeholder="0" maxlength="15" required/></div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="row">
-                                <div class="col-md-12"><button type="button" id="edita_porcentaje">Editar</button></div>
+                                <div class="col-md-12"><input type="text" class="textbox-finanzas" name="txt_estatus_edit" value="" placeholder="0%" maxlength="15" required/></div>
                             </div>
                         </div>
                     </div>
+                    <div class="row "> 
+                        <div class="col-md-12"></div>
+                    </div> 
+                    <div class="row "> 
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4"><button type="button" id="edita_porcentaje">Editar</button></div>
+                    </div> 
                 </div>
                 <div class="modal-footer">
                     <div class="row">

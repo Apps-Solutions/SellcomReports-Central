@@ -14,7 +14,7 @@
                       <div class="col-xs-6 col-sm-4 col-md-6">
                           <center>	
                               <select name='tam' onchange="document.paginar.tampag.value = this.value;
-                                      document.paginar.submit();" class="select_general" style="">
+                                      document.paginar.submit();" class="select_general" style="height: 25px;">
                                   <option value='10'<?php if ($tampag == "10") print "selected=\"selected\" "; ?>>10</option>
                                   <option value='25'<?php if ($tampag == "25") print "selected=\"selected\" "; ?>>25</option>
                                   <option value='50'<?php if ($tampag == "50") print "selected=\"selected\" "; ?>>50</option>
