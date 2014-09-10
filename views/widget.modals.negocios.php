@@ -9,7 +9,7 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar</h4>
                </div>
                <form name="frmOtros" id="frmOtros">
-                    <div class="modal-body"> 
+                    <div class="modal-body">
                          <div class="row margen_bottom_10">
                               <div class="col-md-1"></div>
                               <div class="col-md-5">

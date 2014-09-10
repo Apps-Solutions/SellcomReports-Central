@@ -152,11 +152,15 @@
                               <div class="col-md-2">
                               </div>
                          </div>
+                        <div class="row">
+                              <div class="col-md-2"></div>
+                              <div class="col-md-8"><small>*Selecciona una fecha en el calendario</small></div>
+                              <div class="col-md-2"></div>
+                         </div>
                     </div>
                     <div class="modal-footer">
                          <div class="row">
                               <div class="col-md-2"></div>
-
                               <div class="col-md-8">
                                    <div class="row">
                                         <div class="col-md-6">
@@ -167,9 +171,7 @@
                                         </div>
                                    </div>
                               </div>
-
                               <div class="col-md-2"></div>
-
                          </div>
                     </div>
                </form>

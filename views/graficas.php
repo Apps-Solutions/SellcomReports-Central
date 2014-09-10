@@ -16,10 +16,10 @@
                                 <table class="table tabla_grafica">
                                     <thead>
                                     <th>Mes / Año</th>
+                                    <th><?php echo date("Y");?></th>
+                                    <!--<th>2013</th>
                                     <th>2012</th>
-                                    <th>2013</th>
-                                    <th>2012</th>
-                                    <th>2013</th>
+                                    <th>2013</th>-->
                                     </thead>
                                     <tbody>
                                         <?php for ( $i = 1; $i < 13; $i++ ):
@@ -27,9 +27,9 @@
                                             <tr>
                                                 <td><?php echo $_MonthsE[ $i ]; ?></td>
                                                 <td>1,000.00</td>
+                                                <!--<td>1,000.00</td>
                                                 <td>1,000.00</td>
-                                                <td>1,000.00</td>
-                                                <td>1,000.00</td>
+                                                <td>1,000.00</td>-->
                                             </tr>
                                         <?php endfor; ?>
                                     </tbody>
@@ -105,7 +105,6 @@
     google.load("visualization", "1", {packages: ["corechart"]});
     google.setOnLoadCallback(drawChart);
     function drawChart() {
-
         var data = google.visualization.arrayToDataTable([
             ['Year', 'Sales', 'Expenses'],
             ['2004', 1000, 400],
@@ -118,9 +117,7 @@
             title: 'Company Performance',
             hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
         };
-
         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-
         chart.draw(data, options);
 
     }

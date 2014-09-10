@@ -10,11 +10,11 @@ function guarda_Cliente($cliente,$nombre,$apellido,$email,$telefono)
      $_error = false;
 
      $rules = array(
-         "Cliente"=>array("valor"=>$cliente,"required","length"=>array("max"=>"255")),
-         "Nombre"=>array("valor"=>$nombre,"required","length"=>array("max"=>"255")),
-         "Apellido"=>array("valor"=>$apellido,"required","length"=>array("max"=>"255")),
-         "Email"=>array("valor"=>$email,"required","email","length"=>array("max"=>"255")),
-         "Teléfono"=>array("valor"=>$telefono,"required","numeric","length"=>array("max"=>"12")),
+         "Empresa"=>array("valor"=>$cliente,"required","field","length"=>array("max"=>"255")),
+         "Nombre"=>array("valor"=>$nombre,"required","field","length"=>array("max"=>"255")),
+         "Apellido(s)"=>array("valor"=>$apellido,"required","field","length"=>array("max"=>"255")),
+         "Email"=>array("valor"=>$email,"required","email","field","length"=>array("max"=>"255")),
+         "Teléfono"=>array("valor"=>$telefono,"required","numeric","field","length"=>array("max"=>"12")),
      );
 
 
@@ -22,7 +22,7 @@ function guarda_Cliente($cliente,$nombre,$apellido,$email,$telefono)
 
      if($valid != "")
      {
-          $respuesta[0]["error"] = ($valid);
+          $respuesta[0]["error"] .= $valid;
           $_error = true;
      }
 
@@ -67,13 +67,13 @@ function guarda_Informacion($sel_deal_status,$txt_deal_nombre,$sel_deal_cliente,
      $_error = false;
 
      $rules = array(
-         "Fecha"=>array("valor"=>$fecha,"required"),
-         "Estatus"=>array("valor"=>$sel_deal_status,"required"),
-         "Nombre"=>array("valor"=>$txt_deal_nombre,"required"),
-         "Cliente"=>array("valor"=>$sel_deal_cliente,"required"),
-         "Tipo"=>array("valor"=>$sel_deal_tipo,"required"),
-         "Sector"=>array("valor"=>$sel_deal_sector,"required"),
-         "Valor"=>array("valor"=>$txt_deal_valor,"required","numeric","length"=>array("max"=>"10"))
+         "Fecha"=>array("valor"=>$fecha,"required","field"),
+         "Estatus"=>array("valor"=>$sel_deal_status,"required","select"),
+         "Nombre"=>array("valor"=>$txt_deal_nombre,"required","field"),
+         "Cliente"=>array("valor"=>$sel_deal_cliente,"required","field"),
+         "Tipo"=>array("valor"=>$sel_deal_tipo,"required","select"),
+         "Sector"=>array("valor"=>$sel_deal_sector,"required","select"),
+         "Valor"=>array("valor"=>$txt_deal_valor,"required","field","numeric","length"=>array("max"=>"10"))
      );
 
 
@@ -82,7 +82,7 @@ function guarda_Informacion($sel_deal_status,$txt_deal_nombre,$sel_deal_cliente,
 
      if($valid != "")
      {
-          $respuesta[0]["error"] = ($valid);
+          $respuesta[0]["error"] = $valid;
           $_error = true;
      }
 
@@ -133,10 +133,10 @@ function guarda_Otros($moneda,$cobranza,$almacen,$embarcadero,$fecha)
      $MyFinanzas = new FINANZAS;
 
      $rules = array(
-         "Fecha"=>array("valor"=>$fecha,"required"),
-         "Cobranza Semanal"=>array("valor"=>$cobranza,"required","numeric","length"=>array("max"=>"10")),
-         "Almacen Stock"=>array("valor"=>$almacen,"required","numeric","length"=>array("max"=>"10")),
-         "Embarcadero Semanal"=>array("valor"=>$embarcadero,"required","numeric","length"=>array("max"=>"10"))
+         "Fecha"=>array("valor"=>$fecha,"required","field"),
+         "Cobranza Semanal"=>array("valor"=>$cobranza,"required","field","numeric","length"=>array("max"=>"10")),
+         "Almacen Stock"=>array("valor"=>$almacen,"required","numeric","field","length"=>array("max"=>"10")),
+         "Embarcadero Semanal"=>array("valor"=>$embarcadero,"required","field","numeric","length"=>array("max"=>"10"))
      );
 
 
@@ -185,9 +185,9 @@ function get_VAB($empleado,$moneda,$fecha)
      $MyFinanzas = new FINANZAS;
 
      $rules = array(
-         "Empleado"=>array("valor"=>$empleado,"required"),
-         "Tipo Moneda"=>array("valor"=>$moneda,"required"),
-         "Fecha"=>array("valor"=>$fecha,"required")
+         "Empleado"=>array("valor"=>$empleado,"required","select"),
+         "Tipo Moneda"=>array("valor"=>$moneda,"required","select"),
+         "Fecha"=>array("valor"=>$fecha,"required","field")
      );
 
 
@@ -324,9 +324,9 @@ function edita_Valores($id,$estatus,$valor,$porcentaje,$fecha)
      $MyNegocio = new NEGOCIOS();
 
      $rules = array(
-         "Fecha"=>array("valor"=>$fecha,"required"),
+         "Fecha"=>array("valor"=>$fecha,"required","field"),
          "Id"=>array("valor"=>$id,"numeric","required"),
-         "Porcentaje"=>array("valor"=>$porcentaje,"numeric","required"),
+         "Porcentaje"=>array("valor"=>$porcentaje,"numeric","required","field"),
      );
 
 
@@ -376,11 +376,11 @@ function guarda_kpi($moneda,$cliente,$empleado,$status,$valor,$fecha)
      $MyFinanzas = new FINANZAS();
 
      $rules = array(
-         "Fecha"=>array("valor"=>$fecha,"required"),
-         "Moneda"=>array("valor"=>$moneda,"required"),
-         "Cliente"=>array("valor"=>$cliente,"required"),
-         "Empleado"=>array("valor"=>$empleado,"required"),
-         "Valor"=>array("valor"=>$valor,"numeric","required")
+         "Fecha"=>array("valor"=>$fecha,"required","field"),
+         "Moneda"=>array("valor"=>$moneda,"required","select"),
+         "Cliente"=>array("valor"=>$cliente,"required","select"),
+         "Empleado"=>array("valor"=>$empleado,"required","select"),
+         "Valor"=>array("valor"=>$valor,"numeric","required","field")
      );
 
 

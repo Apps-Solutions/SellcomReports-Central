@@ -1,4 +1,5 @@
 <?php
+
 require "../init.php";
 
 $empleado = isset($CONTEXT["sel_empleado"]) ? Sanitizacion($CONTEXT["sel_empleado"]) : "";
@@ -19,30 +20,22 @@ $http_vars = $CONTEXT;
 $error = FALSE;
 
 
-if(empty($empleado))
-{
-     $http_vars["MsgErr"] = "Selecciona un Empleado\n";
-     $error = TRUE;
-}
-
-if(empty($moneda))
-{
-     $http_vars["MsgErr"] = "Selecciona el Tipo de Moneda\n";
-     $error = TRUE;
-}
-
 $rules = array(
-    "Fecha"=>array("valor"=>$fecha,"required"),
-    "Ventas"=>array("valor"=>$ventas,"required","numeric","length"=>array("max"=>"10")),
-    "Almacen de proyectos"=>array("valor"=>$stock,"required","numeric","length"=>array("max"=>"10")),
-    "Back Order"=>array("valor"=>$back_order,"required","numeric","length"=>array("max"=>"10"))
+    "Empleado"=>array("valor"=>$empleado,"required","select"),
+    "Fecha"=>array("valor"=>$fecha,"required","field"),
+    "Ventas"=>array("valor"=>$ventas,"required","numeric","field","length"=>array("max"=>"10")),
+    "Almacen de proyectos"=>array("valor"=>$stock,"required","field","numeric","length"=>array("max"=>"10")),
+    "Back Order"=>array("valor"=>$back_order,"required","numeric","field","length"=>array("max"=>"10"))
 );
+
+
+ksort($rules);
 
 $valid = validFormsServer($rules);
 
 if($valid != "")
 {
-     $http_vars["MsgErr"] .= $valid;
+     $http_vars["MsgErr"] = $valid;
      $error = TRUE;
 }
 
