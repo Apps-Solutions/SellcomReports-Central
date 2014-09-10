@@ -13,8 +13,8 @@
   else
   {
       define("DBCONNECT", 'localhost');
-      define("DBUSERNAME", 'fisa');
-      define("DBPASSWORD", 'fisabd');
+      define("DBUSERNAME", 'kpiuser');
+      define("DBPASSWORD", 'userkpi');
       define("DBNAME", 'db_kpis');
   }
 

@@ -22,16 +22,16 @@
                                     <th>2013</th>
                                     </thead>
                                     <tbody>
-                                        <?php for ($i = 1; $i < 13; $i++):
-                                              ?>
-                                              <tr>
-                                                  <td><?php echo $_MonthsE[$i]; ?></td>
-                                                  <td>1,000.00</td>
-                                                  <td>1,000.00</td>
-                                                  <td>1,000.00</td>
-                                                  <td>1,000.00</td>
-                                              </tr>
-                                          <?php endfor; ?>
+                                        <?php for ( $i = 1; $i < 13; $i++ ):
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $_MonthsE[ $i ]; ?></td>
+                                                <td>1,000.00</td>
+                                                <td>1,000.00</td>
+                                                <td>1,000.00</td>
+                                                <td>1,000.00</td>
+                                            </tr>
+                                        <?php endfor; ?>
                                     </tbody>
                                 </table>   
                             </div>
@@ -76,23 +76,23 @@
 
                     <table class="table tabla_grafica">
                         <thead>
-                        <th>Facturacion</th>
+                        <th>Facturación</th>
                         <th>MXP</th>
                         <th>MXP</th>
                         <th>MXP</th>
                         <th>MXP</th>
                         </thead>
                         <tbody>
-                            <?php for ($i = 1; $i < 5; $i++):
-                                  ?>
-                                  <tr>
-                                      <td>Q<?php echo $i; ?></td>
-                                      <td>1,000.00</td>
-                                      <td>1,000.00</td>
-                                      <td>1,000.00</td>
-                                      <td>1,000.00</td>
-                                  </tr>
-                              <?php endfor; ?>
+                            <?php for ( $i = 1; $i < 5; $i++ ):
+                                ?>
+                                <tr>
+                                    <td>Q<?php echo $i; ?></td>
+                                    <td>1,000.00</td>
+                                    <td>1,000.00</td>
+                                    <td>1,000.00</td>
+                                    <td>1,000.00</td>
+                                </tr>
+                            <?php endfor; ?>
                         </tbody>
                     </table>  
                 </div>

@@ -1,163 +1,164 @@
 <?php
 
-  include_once('class.ibd.php');
+include_once('class.ibd.php');
 
-  $iCONSULTASNextError = 200;
+$iCONSULTASNextError = 200;
 
-  define("CONSULTAS_SUCCESS", $iCONSULTASNextError++);
-  define("CONSULTAS_ERR_NOROWS", $iCONSULTASNextError++);
+define("CONSULTAS_SUCCESS",$iCONSULTASNextError++);
+define("CONSULTAS_ERR_NOROWS",$iCONSULTASNextError++);
 
-  class CONSULTAS
-  {
+class CONSULTAS
+{
 
-      var $m_ibd;
-      var $m_key;
+     var $m_ibd;
 
-      function CONSULTAS()
-      {
+     var $m_key;
+
+     function CONSULTAS()
+     {
           $this->Iniciar();
-      }
+     }
 
-      function Iniciar()
-      {
+     function Iniciar()
+     {
           $this->m_ibd = new IBD;
-      }
+     }
 
-      function AgregarRegistro($tabla, $nvoregistro)
-      {
+     function AgregarRegistro($tabla,$nvoregistro)
+     {
           global $MyDebug;
           $MyDebug->SetDebug(1);
 
-          $sql = "INSERT INTO $tabla (" . implode(', ', array_keys($nvoregistro)) . ") VALUES ('" . implode('\', \'', $nvoregistro) . "')";
+          $sql = "INSERT INTO $tabla (".implode(', ',array_keys($nvoregistro)).") VALUES ('".implode('\', \'',$nvoregistro)."')";
 
           //echo $sql."<br/>";
 
-          if (($result = $this->m_ibd->Query(time(), $sql)) != IBD_SUCCESS)
+          if(($result = $this->m_ibd->Query(time(),$sql)) != IBD_SUCCESS)
           {
-              $MyDebug->DebugMessage("CONSULTAS::AgregarRegistro($sql): Fallo [$result]");
-              return $result;
+               $MyDebug->DebugMessage("CONSULTAS::AgregarRegistro($sql): Fallo [$result]");
+               return $result;
           }
 
           $MyDebug->DebugMessage("CONSULTAS::AgregarRegistro($sql): Proceso Satisfactorio");
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function ActualizarRegistro($tabla, $nvoregistro, $condiciones)
-      {
+     function ActualizarRegistro($tabla,$nvoregistro,$condiciones)
+     {
           global $MyDebug;
 
-          foreach ($nvoregistro as $llave => $valor)
+          foreach($nvoregistro as $llave=> $valor)
           {
-              $nvoregistroDB .= "$llave=$valor, ";
+               $nvoregistroDB .= "$llave=$valor, ";
           }
 
-          $nvoregistroDB = substr($nvoregistroDB, 0, -2);
+          $nvoregistroDB = substr($nvoregistroDB,0,-2);
 
-          foreach ($condiciones as $llave => $valor)
+          foreach($condiciones as $llave=> $valor)
           {
 
-              $condicionesDB .= "$llave='$valor' and ";
+               $condicionesDB .= "$llave='$valor' and ";
           }
 
 
-          $condicionesDB = substr($condicionesDB, 0, -5);
+          $condicionesDB = substr($condicionesDB,0,-5);
 
           $sql = "UPDATE $tabla SET $nvoregistroDB WHERE $condicionesDB";
 
 
 
-          if (($result = $this->m_ibd->Query(time(), $sql)) != IBD_SUCCESS)
+          if(($result = $this->m_ibd->Query(time(),$sql)) != IBD_SUCCESS)
           {
-              $MyDebug->DebugMessage("CONSULTAS::ActualizarRegistro($sql): Fallo [$result]");
-              return $result;
+               $MyDebug->DebugMessage("CONSULTAS::ActualizarRegistro($sql): Fallo [$result]");
+               return $result;
           }
 
           $MyDebug->DebugMessage("CONSULTAS::ActualizarRegistro($sql): Proceso Satisfactorio");
 
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function EliminarRegistro($tabla, $condiciones)
-      {
+     function EliminarRegistro($tabla,$condiciones)
+     {
           global $MyDebug;
 
-          foreach ($condiciones as $llave => $valor)
+          foreach($condiciones as $llave=> $valor)
           {
-              $condicionesDB .= "$llave='$valor' and ";
+               $condicionesDB .= "$llave='$valor' and ";
           }
 
-          $condicionesDB = substr($condicionesDB, 0, -5);
+          $condicionesDB = substr($condicionesDB,0,-5);
 
           $sql = "DELETE FROM $tabla WHERE $condicionesDB";
 
-          if (($result = $this->m_ibd->Query(time(), $sql)) != IBD_SUCCESS)
+          if(($result = $this->m_ibd->Query(time(),$sql)) != IBD_SUCCESS)
           {
-              $MyDebug->DebugMessage("CONSULTAS::EliminarRegistro($sql): Fallo [$result]");
-              return $result;
+               $MyDebug->DebugMessage("CONSULTAS::EliminarRegistro($sql): Fallo [$result]");
+               return $result;
           }
 
           $MyDebug->DebugMessage("CONSULTAS::EliminarRegistro($sql): Proceso Satisfactorio");
 
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function SeleccionarTodo($tabla, $campos, $group, $order)
-      {
+     function SeleccionarTodo($tabla,$campos,$group,$order)
+     {
           global $MyDebug;
 
 
-          $sql = "SELECT  " . implode(', ', $campos) . " FROM $tabla ";
+          $sql = "SELECT  ".implode(', ',$campos)." FROM $tabla ";
 
-          if (!empty($orden))
+          if(!empty($orden))
           {
-              $sql .= "GROUP BY $group ";
+               $sql .= "GROUP BY $group ";
           }
 
-          if (!empty($order))
+          if(!empty($order))
           {
-              $sql .= " ORDER BY $order ";
+               $sql .= " ORDER BY $order ";
           }
           $key = time();
-          if (($result = $this->m_ibd->Query($key, $sql)) != IBD_SUCCESS)
+          if(($result = $this->m_ibd->Query($key,$sql)) != IBD_SUCCESS)
           {
-              $MyDebug->DebugMessage("CONSULTAS::SeleccionarTodo($sql): Fallo [$result]");
-              return $result;
+               $MyDebug->DebugMessage("CONSULTAS::SeleccionarTodo($sql): Fallo [$result]");
+               return $result;
           }
 
-          if (($result = $this->m_ibd->NumeroRegistros($key)) < 1)
+          if(($result = $this->m_ibd->NumeroRegistros($key)) < 1)
           {
-              $MyDebug->DebugMessage("CONSULTAS::SeleccionarTodo($sql): Fallo [$result] registros");
-              $this->m_ibd->Liberar($key);
-              return CONSULTAS_ERR_NOROWS;
+               $MyDebug->DebugMessage("CONSULTAS::SeleccionarTodo($sql): Fallo [$result] registros");
+               $this->m_ibd->Liberar($key);
+               return CONSULTAS_ERR_NOROWS;
           }
 
           $this->m_key = $key;
           $MyDebug->DebugMessage("CONSULTAS::SeleccionarTodo($sql): Proceso Satisfactorio");
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function SeleccionarTablaFila($tabla, $campos, $condiciones, $group, $order)
-      {
+     function SeleccionarTablaFila($tabla,$campos,$condiciones,$group,$order)
+     {
           global $MyDebug;
 
-          foreach ($condiciones as $llave => $valor)
+          foreach($condiciones as $llave=> $valor)
           {
-              $condicionesDB .= "$llave='$valor' and ";
+               $condicionesDB .= "$llave='$valor' and ";
           }
 
-          $condicionesDB = substr($condicionesDB, 0, -5);
+          $condicionesDB = substr($condicionesDB,0,-5);
 
-          $sql = "SELECT " . implode(', ', $campos) . " FROM $tabla WHERE $condicionesDB ";
+          $sql = "SELECT ".implode(', ',$campos)." FROM $tabla WHERE $condicionesDB ";
 
           //echo $sql;
 
-          if (!empty($group))
+          if(!empty($group))
           {
-              $sql .= "GROUP BY $group ";
+               $sql .= "GROUP BY $group ";
           }
-          if (!empty($order))
+          if(!empty($order))
           {
-              $sql .= "ORDER BY $order";
+               $sql .= "ORDER BY $order";
           }
 
 
@@ -165,227 +166,227 @@
 
           $key = time();
 
-          if (($result = $this->m_ibd->Query($key, $sql)) != IBD_SUCCESS)
+          if(($result = $this->m_ibd->Query($key,$sql)) != IBD_SUCCESS)
           {
-              $MyDebug->DebugMessage("CONSULTAS::SeleccionarTablaFila($sql): Fallo [$result]");
-              return $result;
+               $MyDebug->DebugMessage("CONSULTAS::SeleccionarTablaFila($sql): Fallo [$result]");
+               return $result;
           }
 
-          if (($result = $this->m_ibd->NumeroRegistros($key)) < 1)
+          if(($result = $this->m_ibd->NumeroRegistros($key)) < 1)
           {
-              $MyDebug->DebugMessage("CONSULTAS::SeleccionarTablaFila($sql): Fallo [$result] registros");
-              $this->m_ibd->Liberar($key);
-              return CONSULTAS_ERR_NOROWS;
+               $MyDebug->DebugMessage("CONSULTAS::SeleccionarTablaFila($sql): Fallo [$result] registros");
+               $this->m_ibd->Liberar($key);
+               return CONSULTAS_ERR_NOROWS;
           }
           $this->m_key = $key;
           $MyDebug->DebugMessage("CONSULTAS::SeleccionarTablaFila($sql): Proceso Satisfactorio");
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function BuscarTexto($tabla, $campos, $condiciones, $group, $order)
-      {
+     function BuscarTexto($tabla,$campos,$condiciones,$group,$order)
+     {
           global $MyDebug;
 
 
-          foreach ($condiciones as $llave => $valor)
+          foreach($condiciones as $llave=> $valor)
           {
-              $condicionDB .= "$llave like '%$valor%' or ";
+               $condicionDB .= "$llave like '%$valor%' or ";
           }
 
-          $condicionDB = substr($condicionDB, 0, -4);
+          $condicionDB = substr($condicionDB,0,-4);
 
-          $sql = "SELECT " . implode(', ', $campos) . " FROM $tabla WHERE $condicionDB ";
+          $sql = "SELECT ".implode(', ',$campos)." FROM $tabla WHERE $condicionDB ";
 
-          if (!empty($group))
+          if(!empty($group))
           {
-              $sql .= "GROUP BY $group ";
+               $sql .= "GROUP BY $group ";
           }
 
-          if (!empty($order))
+          if(!empty($order))
           {
-              $sql .= "ORDER BY $order";
+               $sql .= "ORDER BY $order";
           }
 
           $key = time();
 
-          if (($result = $this->m_ibd->Query($key, $sql)) != IBD_SUCCESS)
+          if(($result = $this->m_ibd->Query($key,$sql)) != IBD_SUCCESS)
           {
-              $MyDebug->DebugMessage("CONSULTAS::BuscarTexto($sql): Fallo [$result]");
-              return $result;
+               $MyDebug->DebugMessage("CONSULTAS::BuscarTexto($sql): Fallo [$result]");
+               return $result;
           }
 
-          if (($result = $this->m_ibd->NumeroRegistros($key)) < 1)
+          if(($result = $this->m_ibd->NumeroRegistros($key)) < 1)
           {
-              $this->m_ibd->Liberar($key);
-              $MyDebug->DebugMessage("CONSULTAS::BuscarTexto($sql): Fallo [$result] registros");
-              return CONSULTAS_ERR_NOROWS;
+               $this->m_ibd->Liberar($key);
+               $MyDebug->DebugMessage("CONSULTAS::BuscarTexto($sql): Fallo [$result] registros");
+               return CONSULTAS_ERR_NOROWS;
           }
 
           $this->m_key = $key;
           $MyDebug->DebugMessage("CONSULTAS::BuscarTexto($sql): Proceso Satisfactorio");
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function QueryINNERJOIN($inner, $campos, $condicion, $group, $order)
-      {
+     function QueryINNERJOIN($inner,$campos,$condicion,$group,$order)
+     {
           global $MyDebug;
 
 
-          foreach ($condicion as $llave => $valor)
+          foreach($condicion as $llave=> $valor)
           {
-              $condicionDB .= "$llave='$valor' and ";
+               $condicionDB .= "$llave='$valor' and ";
           }
 
-          $condicionDB = substr($condicionDB, 0, -5);
+          $condicionDB = substr($condicionDB,0,-5);
 
-          foreach ($inner as $llave => $valor)
+          foreach($inner as $llave=> $valor)
           {
-              list($table1, $table2) = explode(":", $llave);
-              $innerDB .= "$table1 INNER JOIN $table2 ON $valor ";
+               list($table1,$table2) = explode(":",$llave);
+               $innerDB .= "$table1 INNER JOIN $table2 ON $valor ";
           }
 
-          $innerDB = substr($innerDB, 0, -1);
+          $innerDB = substr($innerDB,0,-1);
 
-          $sql = "SELECT " . implode(', ', $campos) . " FROM $innerDB WHERE $condicionDB ";
+          $sql = "SELECT ".implode(', ',$campos)." FROM $innerDB WHERE $condicionDB ";
 
-          if (!empty($group))
+          if(!empty($group))
           {
-              $sql .= "GROUP BY $group ";
+               $sql .= "GROUP BY $group ";
           }
 
-          if (!empty($order))
+          if(!empty($order))
           {
-              $sql .= "ORDER BY $order";
+               $sql .= "ORDER BY $order";
           }
           //echo $sql."<br/>";
           $key = time();
-          if (($result = $this->m_ibd->Query($key, $sql)) != IBD_SUCCESS)
+          if(($result = $this->m_ibd->Query($key,$sql)) != IBD_SUCCESS)
           {
-              $MyDebug->DebugMessage("CONSULTAS::QueryINNERJOIN($sql): Fallo [$result]");
-              return $result;
+               $MyDebug->DebugMessage("CONSULTAS::QueryINNERJOIN($sql): Fallo [$result]");
+               return $result;
           }
 
-          if (($result = $this->m_ibd->NumeroRegistros($key)) < 1)
+          if(($result = $this->m_ibd->NumeroRegistros($key)) < 1)
           {
-              $this->m_ibd->Liberar($key);
-              $MyDebug->DebugMessage("CONSULTAS::QueryINNERJOIN($sql): Fallo [$result] registros");
-              return CONSULTAS_ERR_NOROWS;
+               $this->m_ibd->Liberar($key);
+               $MyDebug->DebugMessage("CONSULTAS::QueryINNERJOIN($sql): Fallo [$result] registros");
+               return CONSULTAS_ERR_NOROWS;
           }
 
           $this->m_key = $key;
           $MyDebug->DebugMessage("CONSULTAS::QueryINNERJOIN($sql): Proceso Satisfactorio");
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function Fetch()
-      {
+     function Fetch()
+     {
           global $MyDebug;
 
-          if (!$this->m_key)
+          if(!$this->m_key)
           {
-              $MyDebug->DebugMessage("CONSULTAS::Fetch(): Null key.");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::Fetch(): Null key.");
+               return 0;
           }
 
-          if (!$this->m_ibd)
+          if(!$this->m_ibd)
           {
-              $MyDebug->DebugMessage("CONSULTAS::Fetch(): Null IBD");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::Fetch(): Null IBD");
+               return 0;
           }
 
           return $this->m_ibd->Fetch($this->m_key);
-      }
+     }
 
-      function NumeroRegistros()
-      {
+     function NumeroRegistros()
+     {
           global $MyDebug;
 
-          if (!$this->m_key)
+          if(!$this->m_key)
           {
-              $MyDebug->DebugMessage("CONSULTAS::NumeroRegistros(): Null key.");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::NumeroRegistros(): Null key.");
+               return 0;
           }
 
-          if (!$this->m_ibd)
+          if(!$this->m_ibd)
           {
-              $MyDebug->DebugMessage("CONSULTAS::NumeroRegistros(): Null IBD");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::NumeroRegistros(): Null IBD");
+               return 0;
           }
 
           return $this->m_ibd->NumeroRegistros($this->m_key);
-      }
+     }
 
-      function Free()
-      {
+     function Free()
+     {
           global $MyDebug;
 
-          if (!$this->m_key)
+          if(!$this->m_key)
           {
-              $MyDebug->DebugMessage("CONSULTAS::Free(): Null key.");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::Free(): Null key.");
+               return 0;
           }
 
-          if (!$this->m_ibd)
+          if(!$this->m_ibd)
           {
-              $MyDebug->DebugMessage("CONSULTAS::Free(): Null IBD");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::Free(): Null IBD");
+               return 0;
           }
 
           $this->m_ibd->Liberar($this->m_key);
           $this->Iniciar();
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-      function UltimoID()
-      {
-          if (!$this->m_ibd)
+     function UltimoID()
+     {
+          if(!$this->m_ibd)
           {
-              return 0;
+               return 0;
           }
           return $this->m_ibd->UltimoID();
-      }
+     }
 
-      /* Siguiente ID A INSERTAR ORACLE */
+     /* Siguiente ID A INSERTAR ORACLE */
 
-      function NextID($tabla)
-      {
-          if (!$this->m_ibd)
+     function NextID($tabla)
+     {
+          if(!$this->m_ibd)
           {
-              return 0;
+               return 0;
           }
 
           return $this->m_ibd->SiguienteID($tabla);
-      }
+     }
 
-      /* Para REGRESAL ULTIMO ID ORACLE */
+     /* Para REGRESAL ULTIMO ID ORACLE */
 
-      function LastID($tabla)
-      {
+     function LastID($tabla)
+     {
           return $this->m_ibd->IDUltimo($tabla);
-      }
+     }
 
-      function NuevaConsulta()
-      {
+     function NuevaConsulta()
+     {
           global $MyDebug;
 
-          if (!$this->m_key)
+          if(!$this->m_key)
           {
-              $MyDebug->DebugMessage("CONSULTAS::NuevaConsulta(): Null key.");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::NuevaConsulta(): Null key.");
+               return 0;
           }
 
-          if (!$this->m_ibd)
+          if(!$this->m_ibd)
           {
-              $MyDebug->DebugMessage("CONSULTAS::NuevaConsulta(): Null IBD");
-              return 0;
+               $MyDebug->DebugMessage("CONSULTAS::NuevaConsulta(): Null IBD");
+               return 0;
           }
 
           $this->m_ibd->Liberar($this->m_key);
           $this->m_key = 0;
           return CONSULTAS_SUCCESS;
-      }
+     }
 
-  }
+}
 
-  $consultas = new CONSULTAS;
+$consultas = new CONSULTAS;
 ?>
