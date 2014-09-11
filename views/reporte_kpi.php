@@ -37,9 +37,9 @@ if($current_month<10)
     $fecha_mes="0".$current_month;
 }
 
-$kpis=$MyFinanzas->get_Kpis($page,$tampag,'e.id, ke.customer_id',$by." ".$orden,$current_year,$fecha_mes);
+$kpis=$MyReportes->get_Kpis($page,$tampag,'e.id, ke.customer_id',$by." ".$orden,$current_year,$fecha_mes);
 
-$total=$MyFinanzas->getTotal();
+$total=$MyReportes->getTotal();
 
 $terminamosconel=$page*$tampag;
 $maxPage=ceil($total/$tampag);

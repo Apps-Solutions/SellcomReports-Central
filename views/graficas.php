@@ -6,7 +6,14 @@
                 <?php include "menu_reporte.php"; ?>
             </div>
         </div>
+<?php
 
+$result = $MyReportes->get_TablaGrafica($page='1',$tampag='1000',$grupo='mes',$orden);
+$total = $MyReportes->getTotal();
+
+
+print_r($result);
+?>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 bgk_blanco_general">
                 <div class="col-xs-12 col-sm-12 col-md-6 " style="padding: 20px;">
@@ -17,9 +24,6 @@
                                     <thead>
                                     <th>Mes / Año</th>
                                     <th><?php echo date("Y");?></th>
-                                    <!--<th>2013</th>
-                                    <th>2012</th>
-                                    <th>2013</th>-->
                                     </thead>
                                     <tbody>
                                         <?php for ( $i = 1; $i < 13; $i++ ):
