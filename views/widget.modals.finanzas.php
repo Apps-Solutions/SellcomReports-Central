@@ -6,7 +6,7 @@
                     <a href="javascript:void(0);" class="close" data-dismiss="modal" aria-hidden="true">
                          <img src="gfx/img/cerrar.png" width="20" height="20" alt="Cerrar" title="Cerrar" />
                     </a>
-                    <h4 class="modal-title" id="myModalLabel">Agregar</h4>
+                    <h4 class="modal-title" id="myModalLabel">Agregar Otros Datos</h4>
                </div>
                <form name="frmOtros" id="frmOtros">
                     <div class="modal-body">
@@ -83,8 +83,6 @@
           </div>
      </div>
 </div>
-
-
 <div class="modal fade bs-captura-kpi-datos-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" data-keyboard="false" data-backdrop="static">
      <div class="modal-dialog modal-md">
           <div class="modal-content">

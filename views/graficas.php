@@ -10,9 +10,6 @@
 
 $result = $MyReportes->get_TablaGrafica($page='1',$tampag='1000',$grupo='mes',$orden);
 $total = $MyReportes->getTotal();
-
-
-print_r($result);
 ?>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 bgk_blanco_general">
@@ -26,10 +23,10 @@ print_r($result);
                                     <th><?php echo date("Y");?></th>
                                     </thead>
                                     <tbody>
-                                        <?php for ( $i = 1; $i < 13; $i++ ):
+                                        <?php for ( $i = 01; $i < 13; $i++ ):
                                             ?>
-                                            <tr>
-                                                <td><?php echo $_MonthsE[ $i ]; ?></td>
+                                        <tr id="mes_<?php echo $i;?>">
+                                                <td><?php echo $months[$i]; ?></td>
                                                 <td>1,000.00</td>
                                                 <!--<td>1,000.00</td>
                                                 <td>1,000.00</td>
@@ -43,7 +40,7 @@ print_r($result);
                     </div>
 
                     <div class="row" style="border: solid 3px #34b05f; padding: 10px;">
-
+                      
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-12">$490,159,297.87</div>
