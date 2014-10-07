@@ -133,7 +133,7 @@ $maxPage = ceil($total / $tampag);
                else:
                     ?>
                     <tr>
-                         <td colspan="6" class="text-danger text-center" style="font-size: 1.2em;">No se encontraron resultados con su busqueda</td>
+                         <td colspan="6" class="text-danger text-center" style="font-size: 1.2em;">No hay registros</td>
                     </tr>
                <?php endif;?>
           </tbody>

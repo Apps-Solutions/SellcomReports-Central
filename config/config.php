@@ -1,5 +1,5 @@
 <?php
-  $isdevelopment = true;
+  $isdevelopment = false;
 
   /*   * **************** Configuración BASE DE DATOS ***************** */
 

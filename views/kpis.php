@@ -103,8 +103,8 @@
     </div>
 </div>
 <?php
-  $objetivo_default = 50;
-  $alcanzado_default = 50;
+  $objetivo_default = 0;
+  $alcanzado_default = 0;
 
 
   if (isset($kpi_objetivo) && $kpi_objetivo > 0)
@@ -122,7 +122,9 @@
 <script type="text/javascript">
     google.load("visualization", "1", {packages: ["corechart"]});
     google.setOnLoadCallback(drawChart);
+
     function drawChart() {
+
         var data = google.visualization.arrayToDataTable([
             ['KPI', 'VALOR'],
             ['KPI Objetivo', <?php echo $value_objetivo > 0 ? $value_objetivo : $alcanzado_default ?>],
@@ -131,9 +133,11 @@
 
         var options = {
             title: 'KPIS',
-            is3D: true,
+            hAxis: {title: 'Resultado', titleTextStyle: {color: 'green'}}
         };
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
+
     }
 </script>
